@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>4.22.0</version>
+            <version>4.23.1</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -36,17 +36,6 @@
             <artifactId>testng</artifactId>
             <version>7.9.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>htmlunit-driver</artifactId>
-            <version>4.13.0</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.seleniumhq.selenium</groupId>
-                    <artifactId>*</artifactId>
-                </exclusion>
-            </exclusions>
         </dependency>
     </dependencies>
 

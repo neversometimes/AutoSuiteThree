@@ -12,7 +12,7 @@ public class RegistrationPage {
         this.driver = driver;
     }
 
-    // page element references defined here
+    // page element references
     private By registerHereLink = By.cssSelector(".text-reset");
     private By registerBtn = By.id("login");
     private By registerErrorText = By.xpath("(//div)[35]");
@@ -26,7 +26,7 @@ public class RegistrationPage {
     private By regAcctLoginBtn = By.cssSelector(".btn.btn-primary");
     private By loginBtn = By.cssSelector(".btn.btn-block.login-btn");
 
-    // define page actions here
+    // defined page actions
 
     public void clickRegisterHereBtn() {
         driver.findElement(registerHereLink).click();

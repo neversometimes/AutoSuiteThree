@@ -13,10 +13,13 @@ import static org.testng.Assert.*;
 
 public class RegistrationTest extends BaseTests{
 
+
+
     @Test
     public void verifyRegistrationFail() {
         // negative test : NO required info was provided to register
         RegistrationPage regPage = new RegistrationPage(driver);
+
         regPage.clickRegisterHereBtn();
         regPage.clickRegisterBtn();
         assertEquals("*Please check above checkbox", regPage.getRegisterErrorText());

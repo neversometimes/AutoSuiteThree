@@ -1,8 +1,11 @@
 package pages;
 
 import base.AbstractComponent;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class NewPwdPage {
 
@@ -10,53 +13,78 @@ public class NewPwdPage {
 
     public NewPwdPage (WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    // page element references
-    private By forgotPwdLink = By.cssSelector(".forgot-password-link");
-    private By emailReqTxt = By.cssSelector("div.form-group:nth-child(1) > div:nth-child(3) > div:nth-child(1)");
-    private By saveNewPwdBtn = By.cssSelector(".btn.btn-custom.btn-block");
-    private By loginLink = By.cssSelector(".d-flex.justify-content-center .text-reset:first-child");
-    private By registerLink = By.cssSelector(".d-flex.justify-content-center .text-reset:last-child");
-    private By emailInput = By.cssSelector("input[type='email'");
-    private By passwordInput = By.cssSelector("input[id='userPassword']");
-    private By confirmInput = By.cssSelector("input[id='confirmPassword']");
-    private By toastAlert = By.cssSelector("#toast-container");
+    // Page Factory Declarations
 
+    @FindBy(css="Copy string literal text to the clipboard")
+    @CacheLookup
+    WebElement forgotPwdLink;
 
-    // defined page actions
+    @FindBy(css="div.form-group:nth-child(1) > div:nth-child(3) > div:nth-child(1)")
+    @CacheLookup
+    WebElement emailReqTxt;
+
+    @FindBy(css=".btn.btn-custom.btn-block")
+    @CacheLookup
+    WebElement saveNewPwdBtn;
+
+    @FindBy(css=".d-flex.justify-content-center .text-reset:first-child")
+    @CacheLookup
+    WebElement loginLink;
+
+    @FindBy(css=".d-flex.justify-content-center .text-reset:last-child")
+    @CacheLookup
+    WebElement registerLink;
+
+    @FindBy(css="input[type='email']")
+    @CacheLookup
+    WebElement emailInput;
+
+    @FindBy(css="input[id='userPassword']")
+    @CacheLookup
+    WebElement passwordInput;
+
+    @FindBy(css="input[id='confirmPassword']")
+    @CacheLookup
+    WebElement confirmInput;
+
+    @FindBy(css="#toast-container")
+    @CacheLookup
+    WebElement toastAlert;
+
+    // Defined Page Actions
+
     public void clickForgotPwdLink() {
-        driver.findElement(forgotPwdLink).click();
+        forgotPwdLink.click();
     }
     public String getEmailReqText() {
-        return driver.findElement(emailReqTxt).getText();
+        return emailReqTxt.getText();
     }
-
     public void clickSaveNewPwd() {
-        driver.findElement(saveNewPwdBtn).click();
+        saveNewPwdBtn.click();
     }
-
     public void clickLoginLink() {
-        driver.findElement(loginLink).click();
+        loginLink.click();
     }
     public void clickRegisterLink() {
-        driver.findElement(registerLink).click();
+        registerLink.click();
     }
     public String getPageURL() {
         return driver.getCurrentUrl();
     }
     public void enterEmailText(String str) {
-        driver.findElement(emailInput).sendKeys(str);
+        emailInput.sendKeys(str);
     }
     public void enterPwdText(String str) {
-        driver.findElement(passwordInput).sendKeys(str);
+        passwordInput.sendKeys(str);
     }
     public void enterConfirmText(String str) {
-        driver.findElement(confirmInput).sendKeys(str);
+        confirmInput.sendKeys(str);
     }
     public String getMessageToastText() {
-        return driver.findElement(toastAlert).getText();
+        return toastAlert.getText();
     }
-
 
 }

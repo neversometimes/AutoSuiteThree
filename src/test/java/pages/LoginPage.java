@@ -1,8 +1,11 @@
 package pages;
 
 import base.AbstractComponent;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
 
@@ -10,41 +13,57 @@ public class LoginPage {
 
     public LoginPage (WebDriver driver) {
         this.driver = driver;
+        PageFactory.initElements(driver, this);     // initialize PF elements with driver and locators
     }
 
-    // page element references
-    private By loginBtn = By.cssSelector(".btn.btn-block.login-btn");
-    private By emailRequiredTxt = By.cssSelector("div[class='form-group'] div[class='invalid-feedback'] div");
-    private By pwdRequiredTxt = By.cssSelector("div[class='form-group mb-4'] div[class='invalid-feedback'] div");
-    private By emailInput = By.id("userEmail");
-    private By pwdInput = By.id("userPassword");
-    private By toastAlert = By.cssSelector("#toast-container");
+    // Page Factory Declarations
 
+    @FindBy(css=".btn.btn-block.login-btn")
+    @CacheLookup
+    WebElement loginBtn;
 
-    // defined page actions
+    @FindBy(css="div[class='form-group'] div[class='invalid-feedback'] div")
+    @CacheLookup
+    WebElement emailRequiredTxt;
+
+    @FindBy(css="div[class='form-group mb-4'] div[class='invalid-feedback'] div")
+    @CacheLookup
+    WebElement pwdRequiredTxt;
+
+    @FindBy(id="userEmail")
+    @CacheLookup
+    WebElement emailInput;
+
+    @FindBy(id="userPassword")
+    @CacheLookup
+    WebElement pwdInput;
+
+    @FindBy(css="#toast-container")
+    @CacheLookup
+    WebElement toastAlert;
+
+    // Defined Page Actions
 
     public void clickLoginBtn() {
-        driver.findElement(loginBtn).click();
+        loginBtn.click();
     }
-
     public String getEmailErrorTxt() {
-        return driver.findElement(emailRequiredTxt).getText();
+        return emailRequiredTxt.getText();
     }
     public String getPwdErrorTxt() {
-        return driver.findElement(pwdRequiredTxt).getText();
+        return pwdRequiredTxt.getText();
     }
     public void enterEmail(String str) {
-        driver.findElement(emailInput).sendKeys(str);
+        emailInput.sendKeys(str);
     }
     public void enterPwd(String str) {
-        driver.findElement(pwdInput).sendKeys(str);
+        pwdInput.sendKeys(str);
     }
     public String getErrorToast() {
-        return driver.findElement(toastAlert).getText();
+        return toastAlert.getText();
     }
     public String verifyHomePageTitle() {
         return driver.getTitle();
     }
-
 
 }

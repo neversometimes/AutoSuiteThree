@@ -7,7 +7,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-
 import java.time.Duration;
 
 import static org.testng.Assert.*;
@@ -49,7 +48,7 @@ public class LoginTest extends BaseTests {
 
     @Test
     public void verifyLogIn() {
-        // pre-requisite: registered user site credentials
+        // pre-requisite: assumes valid registered user credentials
 
         LoginPage loginPage = new LoginPage(driver);
 

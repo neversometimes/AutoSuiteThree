@@ -31,9 +31,9 @@ public class RegistrationTest extends BaseTests{
     @Test
     public void verifyBasicRegistrationCreation() {
         // TODO: pre-req: clear previous registration data to ensure new user can register
+        RegistrationPage regPage = new RegistrationPage(driver);
 
         // using only minimum required data to register
-        RegistrationPage regPage = new RegistrationPage(driver);
         regPage.clickRegisterHereBtn();
 
         // first, last, email, phone, password/confirm pw, 18+ checkbox

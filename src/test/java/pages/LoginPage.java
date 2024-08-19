@@ -39,7 +39,7 @@ public class LoginPage {
     public void enterPwd(String str) {
         driver.findElement(pwdInput).sendKeys(str);
     }
-    public String verifyErrorToast() {
+    public String getErrorToast() {
         return driver.findElement(toastAlert).getText();
     }
     public String verifyHomePageTitle() {

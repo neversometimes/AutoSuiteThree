@@ -1,11 +1,12 @@
 package tests;
 
 import base.BaseTests;
+import pages.LoginPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-import pages.LoginPage;
+
 
 import java.time.Duration;
 
@@ -43,7 +44,7 @@ public class LoginTest extends BaseTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
 
         // verify toast error message
-        assertEquals(loginPage.verifyErrorToast(), "Incorrect email or password.");
+        assertEquals(loginPage.getErrorToast(), "Incorrect email or password.");
     }
 
     @Test
@@ -62,7 +63,7 @@ public class LoginTest extends BaseTests {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#toast-container")));
 
         // verify toast login successfully message
-        assertEquals(loginPage.verifyErrorToast(), "Login Successfully");
+        assertEquals(loginPage.getErrorToast(), "Login Successfully");
 
         // wait until toast goes away then verify page Title
         wait.until(ExpectedConditions.invisibilityOf(driver.findElement(By.cssSelector(".ng-animating"))));

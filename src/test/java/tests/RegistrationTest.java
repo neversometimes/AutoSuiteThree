@@ -22,34 +22,35 @@ public class RegistrationTest extends BaseTests{
 
         regPage.clickRegisterHereBtn();
         regPage.clickRegisterBtn();
-        assertEquals("*Please check above checkbox", regPage.getRegisterErrorText());
+        assertEquals(regPage.getRegisterErrorText(), "*Please check above checkbox");
     }
     @Test
     public void verifyMissingRequiredInfo() {
-        //TODO: add negative test : only SOME required info provided to register
+        //TODO: add negative test : partial required info provided
+    }
+    @Test
+    public void verifyUserAlreadyRegistered() {
+        // TODO: add negative test : no go - already registered!
+        // username@ms.com
+        //
     }
     @Test
     public void verifyBasicRegistrationCreation() {
-        // TODO: pre-req: clear previous registration data to ensure new user can register
         RegistrationPage regPage = new RegistrationPage(driver);
 
         // using only minimum required data to register
         regPage.clickRegisterHereBtn();
 
+        // TODO : introduce random data to ensure registration succeeds
         // first, last, email, phone, password/confirm pw, 18+ checkbox
         regPage.enterFirstName("Mister");
-        regPage.enterLastName("Goodbar");     //BUG: last name required, but doesn't show required via UI
-        regPage.enterEmail("mrgoodbar@gmail.com");
+        regPage.enterLastName("Peanut");     //BUG: last name required, but doesn't show required via UI
+        regPage.enterEmail("mrpeanut@gmail.com");
         regPage.enterPhone("4155551112");
         regPage.enterPassword("WordPass99");
         regPage.enterConfirmPW("WordPass99");
         regPage.selectAgeCheckBox();
-        regPage.clickRegisterBtn();
-
-        // wait for Account Created Successfully Login page
-        // TODO: make wait part of AbstractComponent class
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-primary")));
+        regPage.clickRegisterBtnToast();
 
         // verify Account Created Successfully
         assertEquals(regPage.getAccountCreatedLoginBtn(), "Login");
@@ -58,7 +59,8 @@ public class RegistrationTest extends BaseTests{
         regPage.clickAccountCreatedLoginBtn();
 
         // wait for page with Login button to appear
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-block.login-btn")));
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-block.login-btn")));
+
         // "Login" button routes to generic Log-in Page
         assertEquals(regPage.getLoginBtnValue(), "Login");
 

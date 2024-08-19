@@ -1,17 +1,20 @@
 package pages;
 
-import base.AbstractComponent;
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.FindBy;
 
-public class RegistrationPage {
+import java.util.Base64;
+
+public class RegistrationPage extends BasePage {
 
     private WebDriver driver;
 
     public RegistrationPage (WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);
     }
@@ -19,51 +22,39 @@ public class RegistrationPage {
     // Page Factory Declarations
 
     @FindBy(css=".text-reset")
-    @CacheLookup
     WebElement registerHereLink;
 
     @FindBy(id="login")
-    @CacheLookup
     WebElement registerBtn;
 
     @FindBy(xpath="(//div)[35]")
-    @CacheLookup
     WebElement registerErrorTxt;
 
-    @FindBy(id="firstname")
-    @CacheLookup
+    @FindBy(id="firstName")
     WebElement regFirstName;
 
     @FindBy(id="lastName")
-    @CacheLookup
     WebElement regLastName;
 
     @FindBy(id="userEmail")
-    @CacheLookup
     WebElement regEmail;
 
     @FindBy(id="userMobile")
-    @CacheLookup
     WebElement regPhone;
 
     @FindBy(id="userPassword")
-    @CacheLookup
     WebElement regPW;
 
     @FindBy(id="confirmPassword")
-    @CacheLookup
     WebElement regConfirmPW;
 
     @FindBy(xpath="//input[@type='checkbox']")
-    @CacheLookup
     WebElement regAgeCheckBox;
 
     @FindBy(css=".btn.btn-primary")
-    @CacheLookup
     WebElement regAcctLoginBtn;
 
     @FindBy(css=".btn.btn-block.login-btn")
-    @CacheLookup
     WebElement loginBtn;
 
     // Defined Page Actions
@@ -73,6 +64,10 @@ public class RegistrationPage {
     }
     public void clickRegisterBtn() {
         registerBtn.click();
+    }
+    public void clickRegisterBtnToast() {
+        registerBtn.click();
+        waitForWebElementToAppear(regAcctLoginBtn);
     }
     public String getRegisterErrorText() {
         return registerErrorTxt.getText();
@@ -103,6 +98,7 @@ public class RegistrationPage {
     }
     public void clickAccountCreatedLoginBtn() {
         regAcctLoginBtn.click();
+        waitForWebElementToAppear(loginBtn);
     }
     public String getLoginBtnValue() {
         return loginBtn.getDomAttribute("value");

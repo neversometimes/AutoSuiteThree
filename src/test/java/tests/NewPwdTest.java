@@ -2,12 +2,8 @@ package tests;
 
 import base.BaseTests;
 import pages.NewPwdPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
 import static org.testng.Assert.*;
 
 public class NewPwdTest extends BaseTests {
@@ -17,18 +13,12 @@ public class NewPwdTest extends BaseTests {
     @Test
     public void verifyNewPwdNoCreds() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
-        String emailErrText = "div.form-group:nth-child(1) > div:nth-child(3) > div:nth-child(1)";
 
         // click forgot pwd link
         newPwdPage.clickForgotPwdLink();
 
         // click Save New Password button - no creds entered
-        newPwdPage.clickSaveNewPwd();
-
-        // wait for error message to display on page
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector(emailErrText)));
+        newPwdPage.clickSaveNewPwdErr();
 
         // verify *Email error text shows
         assertEquals(newPwdPage.getEmailReqText(), "*Email is required");
@@ -44,7 +34,6 @@ public class NewPwdTest extends BaseTests {
         newPwdPage.clickLoginLink();
         // verify navigate to login page
         assertEquals(newPwdPage.getPageURL(), loginPageURL);
-
     }
     @Test
     public void verifyNewPwdRegisterLink() {
@@ -57,7 +46,6 @@ public class NewPwdTest extends BaseTests {
 
         // verify navigate to register page
         assertEquals(newPwdPage.getPageURL(), registerPageURL);
-
     }
 
     @Test
@@ -73,10 +61,6 @@ public class NewPwdTest extends BaseTests {
 
         newPwdPage.clickSaveNewPwd();
 
-        // wait for error toast message to appear
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("#toast-container")));
         // verify error text
         assertEquals(newPwdPage.getMessageToastText(), "User Not found.");
 
@@ -96,11 +80,6 @@ public class NewPwdTest extends BaseTests {
         newPwdPage.enterConfirmText("word123PASS");
 
         newPwdPage.clickSaveNewPwd();
-
-        // wait for success toast message to appear
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(
-                By.cssSelector("#toast-container")));
 
         // verify success toast message text
         assertEquals(newPwdPage.getMessageToastText(), "Password Changed Successfully");

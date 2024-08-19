@@ -1,17 +1,18 @@
 package pages;
 
-import base.AbstractComponent;
+import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class LoginPage {
+public class LoginPage extends BasePage {
 
     private WebDriver driver;
 
     public LoginPage (WebDriver driver) {
+        super(driver);
         this.driver = driver;
         PageFactory.initElements(driver, this);     // initialize PF elements with driver and locators
     }
@@ -19,33 +20,35 @@ public class LoginPage {
     // Page Factory Declarations
 
     @FindBy(css=".btn.btn-block.login-btn")
-    @CacheLookup
     WebElement loginBtn;
 
     @FindBy(css="div[class='form-group'] div[class='invalid-feedback'] div")
-    @CacheLookup
     WebElement emailRequiredTxt;
 
     @FindBy(css="div[class='form-group mb-4'] div[class='invalid-feedback'] div")
-    @CacheLookup
     WebElement pwdRequiredTxt;
 
     @FindBy(id="userEmail")
-    @CacheLookup
     WebElement emailInput;
 
     @FindBy(id="userPassword")
-    @CacheLookup
     WebElement pwdInput;
 
     @FindBy(css="#toast-container")
-    @CacheLookup
-    WebElement toastAlert;
+    WebElement toastAppears;
+
+    @FindBy(css=".ng-animating")
+    WebElement toastVanishes;
 
     // Defined Page Actions
 
+
     public void clickLoginBtn() {
         loginBtn.click();
+    }
+    public void clickLoginBtnToast() {
+        loginBtn.click();
+        waitForWebElementToAppear(toastAppears);
     }
     public String getEmailErrorTxt() {
         return emailRequiredTxt.getText();
@@ -60,7 +63,7 @@ public class LoginPage {
         pwdInput.sendKeys(str);
     }
     public String getErrorToast() {
-        return toastAlert.getText();
+        return toastAppears.getText();
     }
     public String verifyHomePageTitle() {
         return driver.getTitle();

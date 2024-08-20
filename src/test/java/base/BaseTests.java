@@ -4,11 +4,14 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.safari.SafariDriver;
-import org.testng.annotations.*;
+//import org.openqa.selenium.safari.SafariDriver;  //tests usually aren't reliable on Safari
 
-import java.io.IOException;
+import org.testng.annotations.*;
+import pages.LoginPage;
+
 import java.time.Duration;
+
+import static org.testng.Assert.assertEquals;
 
 public class BaseTests {
 
@@ -38,6 +41,19 @@ public class BaseTests {
 
     public void goToLandingPage() {
         driver.get("https://rahulshettyacademy.com/client");
+    }
+
+    public LoginPage doLogIn() {
+        // pre-requisite: assumes valid registered user credentials
+
+        LoginPage loginPage = new LoginPage(driver);
+
+        // enter non-registered info and try to log in
+        loginPage.enterEmail("username@ms.com");
+        loginPage.enterPwd("passWORD123");
+        loginPage.clickLoginBtnToast();
+
+        return loginPage;
     }
 
 }

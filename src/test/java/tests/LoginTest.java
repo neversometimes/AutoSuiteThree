@@ -40,16 +40,10 @@ public class LoginTest extends BaseTests {
     @Test
     public void verifyLogIn() {
         // pre-requisite: assumes valid registered user credentials
-
-        LoginPage loginPage = new LoginPage(driver);
-
-        // enter non-registered info and try to log in
-        loginPage.enterEmail("username@ms.com");
-        loginPage.enterPwd("passWORD123");
-        loginPage.clickLoginBtnToast();
-
+        LoginPage loginPage = doLogIn();
         // verify toast login successfully message
         assertEquals(loginPage.getErrorToast(), "Login Successfully");
         assertEquals(loginPage.verifyHomePageTitle(), "Let's Shop");
+
     }
 }

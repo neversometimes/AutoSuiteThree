@@ -2,18 +2,11 @@ package tests;
 
 import base.BaseTests;
 import pages.RegistrationPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
-
-import java.time.Duration;
 
 import static org.testng.Assert.*;
 
 public class RegistrationTest extends BaseTests{
-
-
 
     @Test
     public void verifyRegistrationFail() {
@@ -41,7 +34,7 @@ public class RegistrationTest extends BaseTests{
         // using only minimum required data to register
         regPage.clickRegisterHereBtn();
 
-        // TODO : introduce random data to ensure registration succeeds
+        // TODO : Need to introduce random data here to ensure registration succeeds
         // first, last, email, phone, password/confirm pw, 18+ checkbox
         regPage.enterFirstName("Mister");
         regPage.enterLastName("Peanut");     //BUG: last name required, but doesn't show required via UI

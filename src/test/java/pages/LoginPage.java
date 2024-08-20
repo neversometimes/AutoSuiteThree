@@ -3,7 +3,6 @@ package pages;
 import base.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -41,7 +40,6 @@ public class LoginPage extends BasePage {
     WebElement toastVanishes;
 
     // Defined Page Actions
-
 
     public void clickLoginBtn() {
         loginBtn.click();

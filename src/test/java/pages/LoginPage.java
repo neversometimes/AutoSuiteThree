@@ -41,12 +41,20 @@ public class LoginPage extends BasePage {
 
     // Defined Page Actions
 
-    public void clickLoginBtn() {
+    public void clickLoginBtn(){
         loginBtn.click();
     }
-    public void clickLoginBtnToast() {
+    public void clickLoginBtnWait() {
         loginBtn.click();
         waitForWebElementToAppear(toastAppears);
+        waitForWebElementToDisappear(toastVanishes);
+    }
+    public String clickLoginBtnChkToast() {
+        loginBtn.click();
+        waitForWebElementToAppear(toastAppears);
+        String s = toastAppears.getText();
+        waitForWebElementToDisappear(toastVanishes);
+        return s;
     }
     public String getEmailErrorTxt() {
         return emailRequiredTxt.getText();
@@ -59,9 +67,6 @@ public class LoginPage extends BasePage {
     }
     public void enterPwd(String str) {
         pwdInput.sendKeys(str);
-    }
-    public String getErrorToast() {
-        return toastAppears.getText();
     }
     public String verifyHomePageTitle() {
         return driver.getTitle();

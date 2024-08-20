@@ -17,7 +17,7 @@ public class LoginTest extends BaseTests {
     public void verifyLoginNoCreds() {
         LoginPage loginPage = new LoginPage(driver);
 
-        // click login w/o entering any creds
+        // click login w/o entering any creds, no waiting for toast
         loginPage.clickLoginBtn();
 
         // verify error text on page
@@ -31,18 +31,19 @@ public class LoginTest extends BaseTests {
         // enter non-registered info and try to log in
         loginPage.enterEmail("mrman@job.com");
         loginPage.enterPwd("dummyPW123");
-        loginPage.clickLoginBtnToast();
 
-        // verify toast error message
-        assertEquals(loginPage.getErrorToast(), "Incorrect email or password.");
+        // click loginBtn and wait to verify toast error message
+        assertEquals(loginPage.clickLoginBtnChkToast(), "Incorrect email or password.");
     }
 
     @Test
     public void verifyLogIn() {
+        LoginPage loginPage = new LoginPage(driver);
         // pre-requisite: assumes valid registered user credentials
-        LoginPage loginPage = doLogIn();
-        // verify toast login successfully message
-        assertEquals(loginPage.getErrorToast(), "Login Successfully");
+        loginPage.enterEmail("username@ms.com");
+        loginPage.enterPwd("passWORD123");
+        // click loginBtn and wait to verify toast success message
+        assertEquals(loginPage.clickLoginBtnChkToast(), "Login Successfully");
         assertEquals(loginPage.verifyHomePageTitle(), "Let's Shop");
 
     }

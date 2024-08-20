@@ -11,7 +11,7 @@ import pages.LoginPage;
 
 import java.time.Duration;
 
-import static org.testng.Assert.assertEquals;
+
 
 public class BaseTests {
 
@@ -25,7 +25,7 @@ public class BaseTests {
         driver = new ChromeDriver();
 
         // global timeout implicit wait for all tests
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         // global maximize window for all tests
         //driver.manage().window().maximize();
         // go to the webapp landing page
@@ -51,7 +51,7 @@ public class BaseTests {
         // enter non-registered info and try to log in
         loginPage.enterEmail("username@ms.com");
         loginPage.enterPwd("passWORD123");
-        loginPage.clickLoginBtnToast();
+        loginPage.clickLoginBtnWait();
 
         return loginPage;
     }

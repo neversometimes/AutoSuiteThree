@@ -34,7 +34,7 @@ public class ProductViewTest extends BaseTests{
         pvPage.clickContShoppingBtn();
 
         // verify page navigates to main app shopping page
-        assertEquals(getPageURL(), "https://rahulshettyacademy.com/client/dashboard/dash");
+        assertEquals(getPageURL(), homePageURL);
 
     }
 

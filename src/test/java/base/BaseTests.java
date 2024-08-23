@@ -56,4 +56,8 @@ public class BaseTests {
         return loginPage;
     }
 
+    public String getPageURL() {
+        return driver.getCurrentUrl();
+    }
+
 }

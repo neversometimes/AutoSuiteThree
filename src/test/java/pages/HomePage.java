@@ -102,7 +102,9 @@ public class HomePage extends BasePage {
 
     public String getFilterErrorToast() {
         waitForWebElementToAppear(toastAppears);
-        return toastAppears.getText();
+        String s = toastAppears.getText();
+        waitForWebElementToDisappear(toastVanishes);
+        return s;
     }
 
     public String getResultsCount() throws Exception{

@@ -26,6 +26,4 @@ public class BasePage {
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 
-
-
 }

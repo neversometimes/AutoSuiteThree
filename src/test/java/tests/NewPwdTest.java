@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 public class NewPwdTest extends BaseTests {
 
     @Test
-    public void verifyNewPwdNoCreds() {
+    public void newPwdNoCreds() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
 
         // click forgot pwd link
@@ -22,7 +22,7 @@ public class NewPwdTest extends BaseTests {
         assertEquals(newPwdPage.getEmailReqText(), "*Email is required");
     }
     @Test
-    public void verifyNewPwdLoginLink() {
+    public void newPwdLoginLink() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
 
         // click forgot pwd link
@@ -34,7 +34,7 @@ public class NewPwdTest extends BaseTests {
         assertEquals(getPageURL(), appLoginPageURL);
     }
     @Test
-    public void verifyNewPwdRegisterLink() {
+    public void newPwdRegisterLink() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
         // click forgot pwd link
         newPwdPage.clickForgotPwdLink();
@@ -47,7 +47,7 @@ public class NewPwdTest extends BaseTests {
     }
 
     @Test
-    public void verifyNewPwdBadCreds() {
+    public void newPwdBadCreds() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
         // click forgot pwd link
         newPwdPage.clickForgotPwdLink();
@@ -64,7 +64,7 @@ public class NewPwdTest extends BaseTests {
 
     }
     @Test
-    public void verifyCreateNewPwd() {
+    public void createNewPwd() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
 
         // click forgot pwd link

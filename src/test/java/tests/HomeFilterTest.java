@@ -8,7 +8,7 @@ import static org.testng.Assert.*;
 public class HomeFilterTest extends BaseTests {
 
     @Test
-    public void verifyFilterTextSearchFail() throws Exception{
+    public void textSearchFail() throws Exception{
         // negative test: search - no results
         HomePage homePage = new HomePage(driver);
         // login to site
@@ -22,7 +22,7 @@ public class HomeFilterTest extends BaseTests {
     }
 
     @Test
-    public void verifyFilterTextSearch() throws Exception{
+    public void textSearch() throws Exception{
         HomePage homePage = new HomePage(driver);
         // login to site
         doLogIn();
@@ -36,7 +36,7 @@ public class HomeFilterTest extends BaseTests {
         assertTrue(homePage.getResultsCount().contains("1"), "count=1");
     }
     @Test
-    public void verifyFilterPrice() throws Exception{
+    public void priceFilter() throws Exception{
         HomePage homePage = new HomePage(driver);
         // login to site
         doLogIn();
@@ -51,7 +51,7 @@ public class HomeFilterTest extends BaseTests {
 
     }
     @Test
-    public void verifyCategories() throws Exception{
+    public void categoriesFilter() throws Exception{
         HomePage homePage = new HomePage(driver);
         // login to site
         doLogIn();
@@ -76,7 +76,7 @@ public class HomeFilterTest extends BaseTests {
     }
 
     @Test
-    public void verifyGenderFilter() throws Exception {
+    public void genderFilter() throws Exception {
 
         HomePage homePage = new HomePage(driver);
         // login to site

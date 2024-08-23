@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 public class ProductViewTest extends BaseTests{
     @Test
-    public void verifyProductPage() throws Exception{
+    public void productPage() throws Exception{
         ProductViewPage pvPage = new ProductViewPage(driver);
         // Verifies entry point and various product details data
 
@@ -23,7 +23,7 @@ public class ProductViewTest extends BaseTests{
         assertEquals(pvPage.getProdDetails(), "Adidas shoes for Men");
     }
     @Test
-    public void verifyShoppingBtn() throws Exception{
+    public void continueShopping() throws Exception{
         ProductViewPage pvPage = new ProductViewPage(driver);
         // login to site
         doLogIn();

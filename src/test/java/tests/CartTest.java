@@ -63,7 +63,7 @@ public class CartTest extends BaseTests {
         assertEquals(cartPage.getCartCountTxt(), "1");
     }
     @Test
-    public void TwoCartProductsCount() throws Exception {
+    public void twoCartProductsCount() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
         doLogIn();
@@ -101,7 +101,7 @@ public class CartTest extends BaseTests {
 
     }
     @Test
-    public void AddShoesItemToCart() throws Exception {
+    public void addShoesItemToCart() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
         doLogIn();
@@ -126,7 +126,7 @@ public class CartTest extends BaseTests {
 
     }
     @Test
-    public void DeleteCartItem() throws Exception {
+    public void deleteCartItem() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
         doLogIn();
@@ -154,7 +154,7 @@ public class CartTest extends BaseTests {
 
     }
     @Test
-    public void CartBuyNowAndCheckout() throws Exception {
+    public void cartBuyNowAndCheckout() throws Exception {
         // Buy Now and Checkout both go to the order page
         // this test verifies those navigation paths
         CartPage cartPage = new CartPage(driver);

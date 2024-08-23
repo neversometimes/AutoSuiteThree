@@ -14,7 +14,7 @@ public class LoginTest extends BaseTests {
     // after new password set, verify login
 
     @Test
-    public void verifyLoginNoCreds() {
+    public void loginNoCreds() {
         LoginPage loginPage = new LoginPage(driver);
 
         // click login w/o entering any creds, no waiting for toast
@@ -25,7 +25,7 @@ public class LoginTest extends BaseTests {
         assertEquals(loginPage.getPwdErrorTxt(), "*Password is required");
     }
     @Test
-    public void verifyLoginBadCreds() {
+    public void loginBadCreds() {
         LoginPage loginPage = new LoginPage(driver);
 
         // enter non-registered info and try to log in
@@ -35,9 +35,8 @@ public class LoginTest extends BaseTests {
         // click loginBtn and wait to verify toast error message
         assertEquals(loginPage.clickLoginBtnChkToast(), "Incorrect email or password.");
     }
-
     @Test
-    public void verifyLogIn() {
+    public void basicLogIn() {
         LoginPage loginPage = new LoginPage(driver);
         // pre-requisite: assumes valid registered user credentials
         loginPage.enterEmail("username@ms.com");

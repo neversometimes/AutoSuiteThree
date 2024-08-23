@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 public class RegistrationTest extends BaseTests{
 
     @Test
-    public void verifyRegistrationFail() {
+    public void registrationFail() {
         // negative test : NO required info was provided to register
         RegistrationPage regPage = new RegistrationPage(driver);
 
@@ -18,17 +18,17 @@ public class RegistrationTest extends BaseTests{
         assertEquals(regPage.getRegisterErrorText(), "*Please check above checkbox");
     }
     @Test
-    public void verifyMissingRequiredInfo() {
+    public void missingRequiredInfo() {
         //TODO: add negative test : partial required info provided
     }
     @Test
-    public void verifyUserAlreadyRegistered() {
+    public void userAlreadyRegistered() {
         // TODO: add negative test : no go - already registered!
         // username@ms.com
         //
     }
     @Test
-    public void verifyBasicRegistrationCreation() {
+    public void basicRegistrationCreation() {
         RegistrationPage regPage = new RegistrationPage(driver);
 
         // using only minimum required data to register
@@ -37,8 +37,8 @@ public class RegistrationTest extends BaseTests{
         // TODO : Need to introduce random data here to ensure registration succeeds
         // first, last, email, phone, password/confirm pw, 18+ checkbox
         regPage.enterFirstName("Mister");
-        regPage.enterLastName("Peanut");     //BUG: last name required, but doesn't show required via UI
-        regPage.enterEmail("mrpeanut@gmail.com");
+        regPage.enterLastName("Rogers");     //BUG: last name required, but doesn't show required via UI
+        regPage.enterEmail("mrrogers@gmail.com");
         regPage.enterPhone("4155551112");
         regPage.enterPassword("WordPass99");
         regPage.enterConfirmPW("WordPass99");

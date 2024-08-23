@@ -23,7 +23,7 @@ public class CartTest extends BaseTests {
         // click "Continue Shopping" btn
         cartPage.clickContinueShopping();
         // verify back at site home shopping page again
-        assertEquals(getPageURL(), "https://rahulshettyacademy.com/client/dashboard/dash");
+        assertEquals(getPageURL(), homePageURL);
     }
     @Test
     public void ATCFromHomePage() throws Exception {

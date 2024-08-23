@@ -7,8 +7,6 @@ import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
 public class NewPwdTest extends BaseTests {
-    String loginPageURL = "https://rahulshettyacademy.com/client/auth/login";
-    String registerPageURL = "https://rahulshettyacademy.com/client/auth/register";
 
     @Test
     public void verifyNewPwdNoCreds() {
@@ -33,7 +31,7 @@ public class NewPwdTest extends BaseTests {
         //click on login link
         newPwdPage.clickLoginLink();
         // verify navigate to login page
-        assertEquals(getPageURL(), loginPageURL);
+        assertEquals(getPageURL(), appLoginPageURL);
     }
     @Test
     public void verifyNewPwdRegisterLink() {
@@ -85,7 +83,7 @@ public class NewPwdTest extends BaseTests {
         assertEquals(newPwdPage.getMessageToastText(), "Password Changed Successfully");
 
         // verify page navigates back to login page
-        assertEquals(getPageURL(), loginPageURL);
+        assertEquals(getPageURL(), appLoginPageURL);
 
         // TEST CLEANUP::
         // reset password BACK to the base password ='passWORD123'

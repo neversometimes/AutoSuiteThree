@@ -10,6 +10,7 @@ import org.testng.annotations.*;
 import pages.LoginPage;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class BaseTests {
 
@@ -59,6 +60,18 @@ public class BaseTests {
 
     public String getPageURL() {
         return driver.getCurrentUrl();
+    }
+
+    public String getRandomStr(int length) {
+        Random random = new Random();
+        String alphaStr = "abcdefghijklmnopqrstuvwxyz";
+        int rndIndx=0;
+        String s = "";
+        for (int i=0; i<length; i++){
+            rndIndx = random.nextInt(alphaStr.length());
+            s = s + alphaStr.charAt(rndIndx);
+        }
+        return s;
     }
 
 }

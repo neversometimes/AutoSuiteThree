@@ -34,11 +34,15 @@ public class RegistrationTest extends BaseTests{
         // using only minimum required data to register
         regPage.clickRegisterHereBtn();
 
-        // TODO : Need to introduce random data here to ensure registration succeeds
+        // generate random strings for first/last/email
+        String firstName = getRandomStr(6);
+        String lastName = getRandomStr(6);
+        String email = firstName+lastName+"@gmail.com";
+
         // first, last, email, phone, password/confirm pw, 18+ checkbox
-        regPage.enterFirstName("Mister");
-        regPage.enterLastName("Rogers");     //BUG: last name required, but doesn't show required via UI
-        regPage.enterEmail("mrrogers@gmail.com");
+        regPage.enterFirstName(firstName);
+        regPage.enterLastName(lastName);     //BUG: last name required, but doesn't show required via UI
+        regPage.enterEmail(email);
         regPage.enterPhone("4155551112");
         regPage.enterPassword("WordPass99");
         regPage.enterConfirmPW("WordPass99");

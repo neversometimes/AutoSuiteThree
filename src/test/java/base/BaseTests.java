@@ -14,7 +14,7 @@ import java.time.Duration;
 public class BaseTests {
 
     public String appLoginPageURL = "https://rahulshettyacademy.com/client/auth/login";
-
+    public String homePageURL = "https://rahulshettyacademy.com/client/dashboard/dash";
     protected WebDriver driver;
 
     @BeforeMethod

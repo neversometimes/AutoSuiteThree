@@ -8,11 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class NewPwdPage extends BasePage {
 
-    private WebDriver driver;
-
     public NewPwdPage (WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -71,9 +68,7 @@ public class NewPwdPage extends BasePage {
     public void clickRegisterLink() {
         registerLink.click();
     }
-    public String getPageURL() {
-        return driver.getCurrentUrl();
-    }
+
     public void enterEmailText(String str) {
         emailInput.sendKeys(str);
     }

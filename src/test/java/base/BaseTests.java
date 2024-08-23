@@ -15,6 +15,7 @@ public class BaseTests {
 
     public String appLoginPageURL = "https://rahulshettyacademy.com/client/auth/login";
     public String homePageURL = "https://rahulshettyacademy.com/client/dashboard/dash";
+    public String registerPageURL = "https://rahulshettyacademy.com/client/auth/register";
     protected WebDriver driver;
 
     @BeforeMethod

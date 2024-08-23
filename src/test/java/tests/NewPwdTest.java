@@ -33,7 +33,7 @@ public class NewPwdTest extends BaseTests {
         //click on login link
         newPwdPage.clickLoginLink();
         // verify navigate to login page
-        assertEquals(newPwdPage.getPageURL(), loginPageURL);
+        assertEquals(getPageURL(), loginPageURL);
     }
     @Test
     public void verifyNewPwdRegisterLink() {
@@ -45,7 +45,7 @@ public class NewPwdTest extends BaseTests {
         newPwdPage.clickRegisterLink();
 
         // verify navigate to register page
-        assertEquals(newPwdPage.getPageURL(), registerPageURL);
+        assertEquals(getPageURL(), registerPageURL);
     }
 
     @Test
@@ -85,7 +85,7 @@ public class NewPwdTest extends BaseTests {
         assertEquals(newPwdPage.getMessageToastText(), "Password Changed Successfully");
 
         // verify page navigates back to login page
-        assertEquals(newPwdPage.getPageURL(), loginPageURL);
+        assertEquals(getPageURL(), loginPageURL);
 
         // TEST CLEANUP::
         // reset password BACK to the base password ='passWORD123'

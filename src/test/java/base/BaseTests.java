@@ -11,9 +11,9 @@ import pages.LoginPage;
 
 import java.time.Duration;
 
-
-
 public class BaseTests {
+
+    public String appLoginPageURL = "https://rahulshettyacademy.com/client/auth/login";
 
     protected WebDriver driver;
 

@@ -8,11 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class CartPage extends BasePage {
 
-    private WebDriver driver;
-
     public CartPage (WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 

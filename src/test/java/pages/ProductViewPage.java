@@ -8,17 +8,17 @@ import org.openqa.selenium.support.PageFactory;
 
 public class ProductViewPage extends BasePage {
 
-    private WebDriver driver;
-
     public ProductViewPage (WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);     // initialize PF elements with driver and locators
     }
 
     // Page Factory Declarations
     @FindBy(xpath="(//input[@type='checkbox'])[17]")
     WebElement subCatShoesChkbx;
+
+    @FindBy(xpath="(//input[@type='checkbox'])[18]")
+    WebElement subCatMobilesChkbx;
 
     @FindBy(css=".card-body button:first-of-type")
     WebElement viewShoeBtn;
@@ -41,10 +41,15 @@ public class ProductViewPage extends BasePage {
     // Defined Page Actions
     public void clickSubCatShoesChkbx() throws Exception {
         subCatShoesChkbx.click();
-        Thread.sleep(300);  // seems necessary
+        Thread.sleep(400);  // seems necessary
         //waitForWebElementToAppear(viewShoeBtn);
     }
+    public void clickSubCatMobilesChkbx() throws Exception {
+        subCatMobilesChkbx.click();
+        Thread.sleep(300);  //
+    }
     public void clickViewShoeBtn() {
+        waitForWebElementToAppear(viewShoeBtn);
         viewShoeBtn.click();
         waitForWebElementToDisappear(viewShoeBtn);
     }
@@ -61,7 +66,5 @@ public class ProductViewPage extends BasePage {
     public String getProdDetails() {
         return prodDetails.getText();
     }
-
-
 
 }

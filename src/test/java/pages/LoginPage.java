@@ -8,8 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
 
-    private WebDriver driver;
-
+    WebDriver driver;
     public LoginPage (WebDriver driver) {
         super(driver);
         this.driver = driver;

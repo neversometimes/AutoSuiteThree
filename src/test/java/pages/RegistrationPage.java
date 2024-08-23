@@ -6,15 +6,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.FindBy;
 
-import java.util.Base64;
-
 public class RegistrationPage extends BasePage {
-
-    private WebDriver driver;
 
     public RegistrationPage (WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 

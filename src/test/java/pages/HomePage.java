@@ -8,16 +8,12 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-import java.time.Duration;
 import java.util.List;
 
 public class HomePage extends BasePage {
 
-    private WebDriver driver;
-
     public HomePage (WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);     // initialize PF elements with driver and locators
     }
 
@@ -64,7 +60,7 @@ public class HomePage extends BasePage {
 
     public List<WebElement> getProductTable() throws Exception{
         Thread.sleep(500);                      // 500ms sleep here after search/filter executes
-        //waitForWebElementToAppear(productTableWE);  // inconsistent
+        //waitForWebElementToAppear(productTableWE);  // inconsistent wait
         return productTable;
     }
     public WebElement getProductByName(String productName) throws Exception {

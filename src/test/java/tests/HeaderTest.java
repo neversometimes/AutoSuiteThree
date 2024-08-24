@@ -18,7 +18,7 @@ public class HeaderTest extends BaseTests {
         // click on Orders
         headerPage.clickOrdersBtn();
         // verify page navigates to Orders page
-        System.out.println(headerPage.getOrdersPageTxt());
+        //System.out.println(headerPage.getOrdersPageTxt());
         assertEquals(headerPage.getOrdersPageTxt(),
                 "You have No Orders to show at this time.\nPlease Visit Back Us");
 

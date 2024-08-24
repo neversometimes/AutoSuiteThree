@@ -82,7 +82,7 @@ public class HomeFilterTest extends BaseTests {
         // login to site
         doLogIn();
 
-        System.out.println(homePage.getResultsCount());
+        //System.out.println(homePage.getResultsCount());
 
         // select men
         homePage.selectMenChkbx();

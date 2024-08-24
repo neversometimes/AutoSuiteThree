@@ -89,6 +89,7 @@ public class CartPage extends BasePage {
         deleteCartBtn.click();
     }
     public String getNoProductTxt() {
+        waitForWebElementToAppear(noProductTxt);
         return noProductTxt.getText();
     }
     public void clickCheckOutBtn() {

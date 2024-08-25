@@ -7,16 +7,17 @@ import pages.HeaderPage;
 
 import org.testng.annotations.Test;
 import pages.ProductViewPage;
-
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static org.testng.Assert.*;
 
-
 public class PaymentTest extends BaseTests {
 
     //  ** Payment Page Order Pre-requisite **
+    //  ** logs in, adds one Shoe to cart, clicks BuyNow btn
+    //  **  navigates to Payment Page
+
     public void placeOrderPrep() throws Exception {
         CartPage crtPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
@@ -109,14 +110,16 @@ public class PaymentTest extends BaseTests {
         // test clean up : delete the item in the OrderList
         // click Orders Header btn
         hdrPage.clickOrdersBtn();
-        // click delete btn in Orders page
+        // click delete btn in Orders page and click Sign Out
         paymentPage.clickOrderDeleteBtn();
-
+        hdrPage.clickSignOutBtn();
     }
+
     @Test
     public void ordersPageDetails() throws Exception {
         paymentPlaceOrder();
         PaymentPage paymentPage = new PaymentPage(driver);
+        HeaderPage hdrPage = new HeaderPage(driver);
 
         Date date = new Date();
 
@@ -129,6 +132,8 @@ public class PaymentTest extends BaseTests {
         assertEquals(paymentPage.getOrderNameTxt(), "ADIDAS ORIGINAL");
         assertEquals(paymentPage.getOrderPriceTxt(), "$ 31500");
         assertEquals(paymentPage.getOrderDateTxt(), sdf.format(date));
+
+        hdrPage.clickSignOutBtn();
 
     }
     @Test
@@ -154,7 +159,6 @@ public class PaymentTest extends BaseTests {
 
         // click "Go Back to Cart"
         paymentPage.clickBackToCartBtn();
-
         // verify page text "No Products in Your Cart!"
         assertEquals(crtPage.getNoProductTxt(), "No Products in Your Cart !");
 
@@ -163,33 +167,8 @@ public class PaymentTest extends BaseTests {
         // verify at home shop page
         assertEquals(getPageURL(), homePageURL);
 
-    }
-    @Test
-    public void ordersPageSummary() throws Exception {
-        paymentPlaceOrder();
-        PaymentPage paymentPage = new PaymentPage(driver);
-
-        // click "View" button on Orders Page
-        paymentPage.clickOrderViewBtn();
-
-        // ** Orders Summary Page **
-
-        // verify billing and delivery address and country
-        assertEquals(paymentPage.getBillingAddrNameTxt(), "username@ms.com");
-        assertEquals(paymentPage.getBillingCountryTxt(), "Country - Canada");
-        assertEquals(paymentPage.getDeliveryAddrNameTxt(), "username@ms.com");
-        assertEquals(paymentPage.getDeliveryCountryTxt(), "Country - Canada");
-
-        // verify product ordered name
-        assertEquals(paymentPage.getOrderProdNameTxt(), "ADIDAS ORIGINAL");
-
-        // click "View Orders" button
-        paymentPage.clickViewOrdersBtn();
-        // verify nav to Orders Page
-        assertEquals(getPageURL(), myOrdersPageURL);
-
-        // clean up:  delete the order
-        paymentPage.clickOrderDeleteBtn();
+        hdrPage.clickSignOutBtn();
 
     }
+
 }

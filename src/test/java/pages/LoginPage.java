@@ -8,10 +8,8 @@ import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage extends BasePage {
 
-    WebDriver driver;
     public LoginPage (WebDriver driver) {
         super(driver);
-        this.driver = driver;
         PageFactory.initElements(driver, this);     // initialize PF elements with driver and locators
     }
 
@@ -66,9 +64,6 @@ public class LoginPage extends BasePage {
     }
     public void enterPwd(String str) {
         pwdInput.sendKeys(str);
-    }
-    public String verifyHomePageTitle() {
-        return driver.getTitle();
     }
 
 }

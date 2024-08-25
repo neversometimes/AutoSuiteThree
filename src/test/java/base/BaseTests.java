@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.util.Random;
 
 public class BaseTests {
-
+    public String landingPageURL = "https://rahulshettyacademy.com/client";
     public String appLoginPageURL = "https://rahulshettyacademy.com/client/auth/login";
     public String homePageURL = "https://rahulshettyacademy.com/client/dashboard/dash";
     public String registerPageURL = "https://rahulshettyacademy.com/client/auth/register";
@@ -29,10 +29,14 @@ public class BaseTests {
 
         // global timeout implicit wait for all tests
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
-        // global maximize window for all tests
-        //driver.manage().window().maximize();
+
         // go to the webapp landing page
         goToLandingPage();
+
+        // global maximize window for all tests
+        driver.manage().window().maximize();
+        driver.manage().window().fullscreen();
+
         return driver;
     }
 
@@ -43,10 +47,10 @@ public class BaseTests {
     }
 
     public void goToLandingPage() {
-        driver.get("https://rahulshettyacademy.com/client");
+        driver.get(landingPageURL);
     }
 
-    public LoginPage doLogIn() {
+    public  void doLogIn() {
         // pre-requisite: assumes valid registered user credentials
 
         LoginPage loginPage = new LoginPage(driver);
@@ -56,7 +60,6 @@ public class BaseTests {
         loginPage.enterPwd("passWORD123");
         loginPage.clickLoginBtnWait();
 
-        return loginPage;
     }
 
     public String getPageURL() {
@@ -75,4 +78,7 @@ public class BaseTests {
         return s;
     }
 
+    public String getPageTitle() {
+        return driver.getTitle();
+    }
 }

@@ -1,12 +1,9 @@
 package tests;
 
 import base.BaseTests;
-import pages.CartPage;
-import pages.OrderSummaryPage;
-import pages.PaymentPage;
+import pages.*;
 
 import org.testng.annotations.Test;
-import pages.ProductViewPage;
 
 import static org.testng.Assert.*;
 
@@ -14,6 +11,7 @@ public class OrderSummaryTest extends BaseTests {
 
     @Test
     public void ordersPageSummary() throws Exception {
+        HeaderPage hdrPage = new HeaderPage(driver);
         CartPage crtPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
         PaymentPage paymentPage = new PaymentPage(driver);
@@ -87,9 +85,9 @@ public class OrderSummaryTest extends BaseTests {
         // verify nav to Orders Page
         assertEquals(getPageURL(), myOrdersPageURL);
 
-        // clean up:  delete the order
+        // clean up:  delete the order and sign out
         paymentPage.clickOrderDeleteBtn();
-
+        hdrPage.clickSignOutBtn();
     }
 
 }

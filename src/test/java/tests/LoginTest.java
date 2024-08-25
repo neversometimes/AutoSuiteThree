@@ -43,7 +43,7 @@ public class LoginTest extends BaseTests {
         loginPage.enterPwd("passWORD123");
         // click loginBtn and wait to verify toast success message
         assertEquals(loginPage.clickLoginBtnChkToast(), "Login Successfully");
-        assertEquals(loginPage.verifyHomePageTitle(), "Let's Shop");
+        assertEquals(getPageTitle(), "Let's Shop");
 
     }
 }

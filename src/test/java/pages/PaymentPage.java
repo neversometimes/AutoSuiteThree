@@ -71,25 +71,7 @@ public class PaymentPage extends BasePage {
     @FindBy(css="div[class='row'] button:last-of-type")
     WebElement orderGoBackToCartBtn;
 
-    @FindBy(xpath="//div[@class='email-wrapper ng-star-inserted']//div[1]//div[1]//p[1]")
-    WebElement billingAddrNameTxt;
-
-    @FindBy(xpath="//div[@class='email-wrapper ng-star-inserted']//div[1]//div[1]//p[2]")
-    WebElement billingCountryTxt;
-
-    @FindBy(xpath="//div[@class='email-container']//div[2]//div[1]//p[1]")
-    WebElement deliveryAddrNameTxt;
-
-    @FindBy(xpath="//div[@class='email-container']//div[2]//div[1]//p[2]")
-    WebElement deliveryCountryTxt;
-
-    @FindBy(css=".title")
-    WebElement orderProdName;
-
-    @FindBy(css=".btn.-teal")
-    WebElement viewOrdersBtn;
-
-    // ** Defined Page Actions **
+    // ******** Defined Page Actions ***********
 
     public String getProdNameTxt() {
         return prodName.getText();
@@ -102,6 +84,7 @@ public class PaymentPage extends BasePage {
         countryNameDropdown.click();
     }
     public void clickPlaceOrderBtn() {
+        waitForWebElementToAppear(placeOrderBtn);
         placeOrderBtn.click();
     }
     public String getOrderConfirmationBannerTxt() {
@@ -149,25 +132,6 @@ public class PaymentPage extends BasePage {
         orderGoBackToCartBtn.click();
         waitForWebElementToDisappear(orderGoBackToCartBtn);
     }
-    public String getBillingAddrNameTxt() {
-        return billingAddrNameTxt.getText();
-    }
-    public String getBillingCountryTxt(){
-        return billingCountryTxt.getText();
-    }
-    public String getDeliveryAddrNameTxt() {
-        return deliveryAddrNameTxt.getText();
-    }
-    public String getDeliveryCountryTxt() {
-        return deliveryCountryTxt.getText();
-    }
-    public String getOrderProdNameTxt() {
-        return orderProdName.getText();
-    }
-    public void clickViewOrdersBtn() {
-        viewOrdersBtn.click();
-    }
-
 
 
 }

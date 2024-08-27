@@ -46,7 +46,7 @@ public class NewPwdTest extends BaseTests {
     }
 
     @Test
-    public void newPwdBadCreds() {
+    public void newPwdBadCreds() throws Exception {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
         // click forgot pwd link
         newPwdPage.clickForgotPwdLink();
@@ -63,7 +63,7 @@ public class NewPwdTest extends BaseTests {
 
     }
     @Test
-    public void createNewPwd() {
+    public void createNewPwd() throws Exception {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
 
         // click forgot pwd link

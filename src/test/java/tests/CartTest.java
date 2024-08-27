@@ -71,7 +71,7 @@ public class CartTest extends BaseTests {
         // select checkbox for iphone
         pvPage.clickSubCatMobilesChkbx();
 
-        // click product Add to Cart button
+        // click SHOPPING PAGE Add to Cart button
         cartPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
@@ -90,7 +90,7 @@ public class CartTest extends BaseTests {
         // click view product button
         pvPage.clickViewShoeBtn();
 
-        // from ProductView page, click Add To Product button
+        // from PRODUCT VIEW page, click Add To Product button
         cartPage.clickProdPageAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
@@ -156,7 +156,7 @@ public class CartTest extends BaseTests {
     @Test
     public void cartBuyNowAndCheckout() throws Exception {
         // Buy Now and Checkout both go to the order page
-        // this test verifies those navigation paths
+        // this test verifies BOTH of those navigation paths
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
         doLogIn();

@@ -11,7 +11,7 @@ public class HeaderTest extends BaseTests {
     // header links: Home/Orders/Cart/SignOut
 
     @Test
-    public void navigateHeaderLinks() {
+    public void navigateHeaderLinks() throws Exception {
         HeaderPage headerPage = new HeaderPage(driver);
         doLogIn();
 

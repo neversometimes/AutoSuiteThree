@@ -44,13 +44,13 @@ public class LoginPage extends BasePage {
     public void clickLoginBtnWait() {
         loginBtn.click();
         waitForWebElementToAppear(toastAppears);
-        waitForWebElementToDisappear(toastVanishes);
+        waitForWebElementToDisappear(toastAppears);
     }
     public String clickLoginBtnChkToast() {
         loginBtn.click();
         waitForWebElementToAppear(toastAppears);
         String s = toastAppears.getText();
-        waitForWebElementToDisappear(toastVanishes);
+        waitForWebElementToDisappear(toastAppears);
         return s;
     }
     public String getEmailErrorTxt() {

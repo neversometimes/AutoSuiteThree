@@ -23,8 +23,7 @@ public class HomePage extends BasePage {
 
     @FindBy(css=".mb-3")
     List<WebElement> productTable;
-    @FindBy(css=".mb-3")
-    WebElement productTableWE;  //need single WebElement to pass into wait method
+
     By prodName = By.cssSelector("h5 b");
 
     @FindBy(css="div[class='col-md-6'] input[name='minPrice']")
@@ -60,16 +59,15 @@ public class HomePage extends BasePage {
 
     public List<WebElement> getProductTable() throws Exception{
         Thread.sleep(500);                      // 500ms sleep here after search/filter executes
-        //waitForWebElementToAppear(productTableWE);  // inconsistent wait
+        //waitForWebElementToAppear(productTableWE);  // inconsistent wait - flaky test
         return productTable;
     }
     public WebElement getProductByName(String productName) throws Exception {
 
-        WebElement chosen = getProductTable().stream()
+       return  getProductTable().stream()
                 .filter(p->p.findElement(prodName).getText()
                 .equals(productName)).findFirst().orElse(null);
 
-        return chosen;
     }
 
     public void enterMinPrice(String str) {

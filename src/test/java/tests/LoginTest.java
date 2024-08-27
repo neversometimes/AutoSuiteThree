@@ -24,7 +24,7 @@ public class LoginTest extends BaseTests {
         assertEquals(loginPage.getPwdErrorTxt(), "*Password is required");
     }
     @Test
-    public void loginBadCreds() {
+    public void loginBadCreds() throws Exception {
         LoginPage loginPage = new LoginPage(driver);
 
         // enter non-registered info and try to log in
@@ -32,16 +32,24 @@ public class LoginTest extends BaseTests {
         loginPage.enterPwd("dummyPW123");
 
         // click loginBtn and wait to verify toast error message
-        assertEquals(loginPage.clickLoginBtnChkToast(), "Incorrect email or password.");
+        loginPage.clickLoginBtn();
+        assertEquals(loginPage.getToastTxt(), "Incorrect email or password.");
+        //assertEquals(loginPage.clickLoginBtnChkToast(), "Incorrect email or password.");
     }
     @Test
-    public void basicLogIn() {
+    public void basicLogIn() throws Exception {
         LoginPage loginPage = new LoginPage(driver);
         // pre-requisite: assumes valid registered user credentials
         loginPage.enterEmail("username@ms.com");
         loginPage.enterPwd("passWORD123");
+
         // click loginBtn and wait to verify toast success message
-        assertEquals(loginPage.clickLoginBtnChkToast(), "Login Successfully");
+        loginPage.clickLoginBtn();
+        Thread.sleep(500);
+        assertEquals(loginPage.getToastTxt(), "Login Successfully");
+        //assertEquals(loginPage.clickLoginBtnChkToast(), "Login Successfully");
+
+
         assertEquals(getPageTitle(), "Let's Shop");
 
     }

@@ -37,16 +37,14 @@ public class LoginPage extends BasePage {
 
     public void clickLoginBtn(){
         loginBtn.click();
+
     }
     public void clickLoginBtnWait() {
         loginBtn.click();
         waitForWebElementToAppear(toastAppears);
         waitForWebElementToDisappear(toastAppears);
     }
-    public String clickLoginBtnChkToast() {
-        loginBtn.click();
-        return getToastTxt();
-    }
+
     public String getEmailErrorTxt() {
         return emailRequiredTxt.getText();
     }

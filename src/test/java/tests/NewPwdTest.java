@@ -3,7 +3,6 @@ package tests;
 import base.BaseTests;
 import pages.NewPwdPage;
 import org.testng.annotations.Test;
-
 import static org.testng.Assert.*;
 
 public class NewPwdTest extends BaseTests {

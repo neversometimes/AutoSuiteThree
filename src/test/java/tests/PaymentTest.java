@@ -5,15 +5,12 @@ import pages.PaymentPage;
 import pages.CartPage;
 import pages.HeaderPage;
 import pages.ProductViewPage;
-
 import org.testng.annotations.Test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import static org.testng.Assert.*;
 
 public class PaymentTest extends BaseTests {
-
     //  ** Payment Page Order Pre-requisite: **
     //   -- logs in, adds one Shoe to cart,
     //   -- clicks BuyNow btn, navigates to Payment Page
@@ -45,7 +42,6 @@ public class PaymentTest extends BaseTests {
 
         // click Buy Now
         crtPage.clickBuyNowBtn();
-
     }
     // ** Place Order Pre-requisite: **
     // -- does buyNowPrep()

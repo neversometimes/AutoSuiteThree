@@ -28,7 +28,7 @@ public class HomePage extends BasePage {
 
     @FindBy(css="div[class='col-md-6'] input[name='minPrice']")
     WebElement minPriceInput;
-    @FindBy(xpath="/html[1]/body[1]/app-root[1]/app-dashboard[1]/section[1]/form[1]/div[2]/div[1]/div[2]/input[1]")
+    @FindBy(css="div[class='py-2 border-bottom ml-3'] input[name='maxPrice']")
     WebElement maxPriceInput;
 
     @FindBy(xpath="(//input[@type='checkbox'])[12]")
@@ -43,11 +43,6 @@ public class HomePage extends BasePage {
     @FindBy(xpath="(//input[@type='checkbox'])[21]")
     WebElement womenChkbx;
 
-    @FindBy(css="#toast-container")
-    WebElement toastAppears;
-    @FindBy(css=".ng-animating")
-    WebElement toastVanishes;
-
     @FindBy(css="div[id='res']")
     WebElement showResultsTxt;
 
@@ -56,7 +51,6 @@ public class HomePage extends BasePage {
     public void enterSearchTxt(String str) throws Exception{
         searchBtn.sendKeys(str + Keys.ENTER);
     }
-
     public List<WebElement> getProductTable() throws Exception{
         Thread.sleep(500);                      // 500ms sleep here after search/filter executes
         //waitForWebElementToAppear(productTableWE);  // inconsistent wait - flaky test
@@ -69,7 +63,6 @@ public class HomePage extends BasePage {
                 .equals(productName)).findFirst().orElse(null);
 
     }
-
     public void enterMinPrice(String str) {
         minPriceInput.sendKeys(str);
     }
@@ -88,7 +81,6 @@ public class HomePage extends BasePage {
         householdChkbx.click();
         Thread.sleep(300);
     }
-
     public void selectMenChkbx() throws Exception {
         menChkbx.click();
         Thread.sleep(300);
@@ -97,17 +89,8 @@ public class HomePage extends BasePage {
         womenChkbx.click();
         Thread.sleep(300);
     }
-
-    public String getFilterErrorToast() {
-        waitForWebElementToAppear(toastAppears);
-        String s = toastAppears.getText();
-        waitForWebElementToDisappear(toastVanishes);
-        return s;
-    }
-
     public String getResultsCount() throws Exception{
         return showResultsTxt.getText();
     }
-
 
 }

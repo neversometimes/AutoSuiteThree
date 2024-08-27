@@ -33,9 +33,6 @@ public class LoginPage extends BasePage {
     @FindBy(css="#toast-container")
     WebElement toastAppears;
 
-    @FindBy(css=".ng-animating")
-    WebElement toastVanishes;
-
     // Defined Page Actions
 
     public void clickLoginBtn(){
@@ -48,10 +45,7 @@ public class LoginPage extends BasePage {
     }
     public String clickLoginBtnChkToast() {
         loginBtn.click();
-        waitForWebElementToAppear(toastAppears);
-        String s = toastAppears.getText();
-        waitForWebElementToDisappear(toastAppears);
-        return s;
+        return getToastTxt();
     }
     public String getEmailErrorTxt() {
         return emailRequiredTxt.getText();

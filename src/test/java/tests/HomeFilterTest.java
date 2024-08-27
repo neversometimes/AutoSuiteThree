@@ -17,7 +17,7 @@ public class HomeFilterTest extends BaseTests {
         // search for "cheerios"
         homePage.enterSearchTxt("cheerios");
         // verify "No Products Found" toast appears
-        assertEquals(homePage.getFilterErrorToast(), "No Products Found");
+        assertEquals(homePage.getToastTxt(), "No Products Found");
         assertTrue(homePage.getResultsCount().contains("0"));
     }
 

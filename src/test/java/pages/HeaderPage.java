@@ -32,12 +32,6 @@ public class HeaderPage extends BasePage {
     @FindBy(css="div[class='ng-star-inserted'] h1")
     WebElement emptyCartPageTxt;
 
-    @FindBy(css="#toast-container")
-    WebElement cartToastTxt;
-
-    @FindBy(css="ng-animating")
-    WebElement toastVanishes;
-
     @FindBy(css=".m-2.blink_me")
     WebElement homePageTxt;
 
@@ -59,13 +53,6 @@ public class HeaderPage extends BasePage {
         waitForElementToBeClickable(cartBtn);
         cartBtn.click();
     }
-    public String getCartToastTxt() {
-        waitForWebElementToAppear(cartToastTxt);
-        String s = cartToastTxt.getText();
-        waitForWebElementToDisappear(toastVanishes);
-        return s;
-    }
-
     public String getCartPageTxt() {
         return emptyCartPageTxt.getText();
     }
@@ -73,9 +60,5 @@ public class HeaderPage extends BasePage {
         Thread.sleep(500);
         signOutBtn.click();
     }
-
-
-
-
 
 }

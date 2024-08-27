@@ -59,7 +59,7 @@ public class NewPwdTest extends BaseTests {
         newPwdPage.clickSaveNewPwd();
 
         // verify error text
-        assertEquals(newPwdPage.getMessageToastText(), "User Not found.");
+        assertEquals(newPwdPage.getToastTxt(), "User Not found.");
 
     }
     @Test
@@ -79,7 +79,7 @@ public class NewPwdTest extends BaseTests {
         newPwdPage.clickSaveNewPwd();
 
         // verify success toast message text
-        assertEquals(newPwdPage.getMessageToastText(), "Password Changed Successfully");
+        assertEquals(newPwdPage.getToastTxt(), "Password Changed Successfully");
 
         // verify page navigates back to login page
         assertEquals(getPageURL(), appLoginPageURL);

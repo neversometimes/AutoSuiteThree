@@ -29,7 +29,7 @@ public class PaymentTest extends BaseTests {
         crtPage.clickProdPageAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(crtPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(crtPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(crtPage.getCartCountTxt(), "1");
@@ -79,14 +79,14 @@ public class PaymentTest extends BaseTests {
 
         // simple click "COUPON" btn
         paymentPage.clickApplyCouponBtn();
-        assertEquals(paymentPage.getPaymentToastTxt(), "Please Enter Coupon");
+        assertEquals(paymentPage.getToastTxt(), "Please Enter Coupon");
 
         // set BOGUS country name input
         paymentPage.setBogusCountryNameInput();
 
         // click "PLACE ORDER" btn - verify error text - no order is placed
         paymentPage.clickPlaceOrderBtn();
-        assertEquals(paymentPage.getPaymentToastTxt(), "Please Enter Full Shipping Information");
+        assertEquals(paymentPage.getToastTxt(), "Please Enter Full Shipping Information");
 
     }
 
@@ -99,7 +99,7 @@ public class PaymentTest extends BaseTests {
 
         // click "PLACE ORDER" btn
         payPage.clickPlaceOrderBtn();
-        assertEquals(payPage.getPaymentToastTxt(), "Order Placed Successfully");
+        assertEquals(payPage.getToastTxt(), "Order Placed Successfully");
 
         // verify order confirmation page
         assertEquals(payPage.getOrderConfirmationBannerTxt(), "THANKYOU FOR THE ORDER.");
@@ -129,13 +129,13 @@ public class PaymentTest extends BaseTests {
 
         // click "PLACE ORDER" btn
         payPage.clickPlaceOrderBtn();
-        assertEquals(payPage.getPaymentToastTxt(), "Order Placed Successfully");
+        assertEquals(payPage.getToastTxt(), "Order Placed Successfully");
 
         // click Cart btn
         crtPage.clickCartBtn();
 
         // verify No Product toast
-        assertEquals(crtPage.getCartToastTxt(), "No Product in Your Cart");
+        assertEquals(crtPage.getToastTxt(), "No Product in Your Cart");
         // verify No Products page text
         assertEquals(crtPage.getNoProductTxt(), "No Products in Your Cart !");
 
@@ -156,7 +156,7 @@ public class PaymentTest extends BaseTests {
 
         // click "PLACE ORDER" btn
         payPage.clickPlaceOrderBtn();
-        assertEquals(payPage.getPaymentToastTxt(), "Order Placed Successfully");
+        assertEquals(payPage.getToastTxt(), "Order Placed Successfully");
 
         // verify order confirmation page
         assertEquals(payPage.getOrderConfirmationBannerTxt(), "THANKYOU FOR THE ORDER.");
@@ -201,7 +201,7 @@ public class PaymentTest extends BaseTests {
 
         // click "PLACE ORDER" btn
         paymentPage.clickPlaceOrderBtn();
-        assertEquals(paymentPage.getPaymentToastTxt(), "Order Placed Successfully");
+        assertEquals(paymentPage.getToastTxt(), "Order Placed Successfully");
 
         // click Orders History Page link
         paymentPage.clickOrdersHistoryPageLink();
@@ -218,7 +218,7 @@ public class PaymentTest extends BaseTests {
         //click delete btn
         paymentPage.clickOrderDeleteBtn();
         // verify toast txt "Orders Deleted Successfully"
-        assertEquals(crtPage.getCartToastTxt(), "Orders Deleted Successfully");
+        assertEquals(crtPage.getToastTxt(), "Orders Deleted Successfully");
         // verify "You have No Orders to show at this time.\n Please Visit Back Us" text
         assertEquals(hdrPage.getOrdersPageTxt(), "You have No Orders to show at this time.\nPlease Visit Back Us");
 
@@ -252,7 +252,7 @@ public class PaymentTest extends BaseTests {
         crtPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(crtPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(crtPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(crtPage.getCartCountTxt(), "1");
@@ -270,7 +270,7 @@ public class PaymentTest extends BaseTests {
         crtPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(crtPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(crtPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(crtPage.getCartCountTxt(), "2");
@@ -313,7 +313,7 @@ public class PaymentTest extends BaseTests {
         crtPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(crtPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(crtPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(crtPage.getCartCountTxt(), "1");  // iPhone in cart
@@ -331,7 +331,7 @@ public class PaymentTest extends BaseTests {
         crtPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(crtPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(crtPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(crtPage.getCartCountTxt(), "2");  // 1.iPhone and 2.Shoes in cart

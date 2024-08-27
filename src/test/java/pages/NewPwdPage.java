@@ -78,8 +78,5 @@ public class NewPwdPage extends BasePage {
     public void enterConfirmText(String str) {
         confirmInput.sendKeys(str);
     }
-    public String getMessageToastText() {
-        return toastAlert.getText();
-    }
 
 }

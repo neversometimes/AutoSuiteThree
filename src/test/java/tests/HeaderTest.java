@@ -31,7 +31,7 @@ public class HeaderTest extends BaseTests {
         // click on Cart
         headerPage.clickCartBtn();
         // verify navigates to Cart page
-        assertEquals(headerPage.getCartToastTxt(), "No Product in Your Cart");
+        assertEquals(headerPage.getToastTxt(), "No Product in Your Cart");
         assertEquals(headerPage.getCartPageTxt(), "No Products in Your Cart !");
 
         // click on Home

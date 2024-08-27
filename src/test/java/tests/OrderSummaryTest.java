@@ -26,7 +26,7 @@ public class OrderSummaryTest extends BaseTests {
         crtPage.clickProdPageAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(crtPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(crtPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(crtPage.getCartCountTxt(), "1");
@@ -51,7 +51,7 @@ public class OrderSummaryTest extends BaseTests {
 
         // click "PLACE ORDER" btn
         paymentPage.clickPlaceOrderBtn();
-        assertEquals(paymentPage.getPaymentToastTxt(), "Order Placed Successfully");
+        assertEquals(paymentPage.getToastTxt(), "Order Placed Successfully");
 
         // verify order confirmation page
         assertEquals(paymentPage.getOrderConfirmationBannerTxt(), "THANKYOU FOR THE ORDER.");

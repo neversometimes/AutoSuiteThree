@@ -16,7 +16,7 @@ public class CartTest extends BaseTests {
         // click Cart button in header
         cartPage.clickHeaderCartBtn();
         // verify toast "No Product in Your Cart"
-        assertEquals(cartPage.getCartToastTxt(), "No Product in Your Cart");
+        assertEquals(cartPage.getToastTxt(), "No Product in Your Cart");
         // verify page text "No Products in Your Cart!"
         assertEquals(cartPage.getNoProductTxt(), "No Products in Your Cart !");
 
@@ -37,7 +37,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");
@@ -57,7 +57,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdPageAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");
@@ -75,7 +75,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");
@@ -94,7 +94,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdPageAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "2");
@@ -112,7 +112,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");
@@ -137,7 +137,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");
@@ -167,7 +167,7 @@ public class CartTest extends BaseTests {
         cartPage.clickProdAddToCartBtn();
 
         // wait and verify toast message "Product Added To Cart"
-        assertEquals(cartPage.getCartToastTxt(), "Product Added To Cart");
+        assertEquals(cartPage.getToastTxt(), "Product Added To Cart");
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");

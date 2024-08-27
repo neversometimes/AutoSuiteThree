@@ -27,12 +27,6 @@ public class CartPage extends BasePage {
     @FindBy(css=".card-body button:last-of-type")
     WebElement ProdAddToCartBtn;
 
-    @FindBy(css="#toast-container")
-    WebElement cartToastTxt;
-
-    @FindBy(css=".ng-animating")
-    WebElement toastVanishes;
-
     @FindBy(css="button[routerlink='/dashboard']")
     WebElement continueShoppingBtn;
 
@@ -76,12 +70,7 @@ public class CartPage extends BasePage {
         waitForWebElementToAppear(pViewAddToCartBtn);
         pViewAddToCartBtn.click();
     }
-    public String getCartToastTxt() {
-        waitForWebElementToAppear(cartToastTxt);
-        String s = cartToastTxt.getText();
-        waitForWebElementToDisappear(toastVanishes);
-        return s;
-    }
+
     public void clickContinueShopping() {
         continueShoppingBtn.click();
     }
@@ -114,16 +103,5 @@ public class CartPage extends BasePage {
     public void clickSecondBuyNowBtn() {
         secondBuyNowBtn.click();
     }
-
-
-
-
-
-
-
-
-
-
-
 
 }

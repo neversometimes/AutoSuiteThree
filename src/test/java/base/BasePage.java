@@ -32,4 +32,9 @@ public class BasePage {
         js.executeScript (script, webElement);
     }
 
+    public void waitForElementToBeClickable(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        wait.until(ExpectedConditions.elementToBeClickable(element));
+    }
+
 }

@@ -1,10 +1,13 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+
+import java.util.List;
 
 public class CartPage extends BasePage {
 
@@ -54,6 +57,12 @@ public class CartPage extends BasePage {
     @FindBy(css=".payment__type.payment__type--cc.active")
     WebElement creditCardBtn;
 
+    @FindBy(css=".cartWrap.ng-star-inserted")
+    List<WebElement> cartRows;
+
+    @FindBy (css="li[class='items odd ng-star-inserted'] button[class='btn btn-primary']")
+    WebElement secondBuyNowBtn;
+
     // Defined Page Actions
 
     public void clickProdAddToCartBtn() {
@@ -76,7 +85,8 @@ public class CartPage extends BasePage {
     public void clickContinueShopping() {
         continueShoppingBtn.click();
     }
-    public String getCartCountTxt() {
+    public String getCartCountTxt() throws Exception {
+        Thread.sleep(500);
         return cartCountTxt.getText();
     }
     public void clickCartBtn() {
@@ -101,6 +111,11 @@ public class CartPage extends BasePage {
     public String getCreditCardTxt() {
         return creditCardBtn.getText();
     }
+    public void clickSecondBuyNowBtn() {
+        secondBuyNowBtn.click();
+    }
+
+
 
 
 

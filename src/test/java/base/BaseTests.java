@@ -34,8 +34,8 @@ public class BaseTests {
         goToLandingPage();
 
         // global maximize window for all tests
-        driver.manage().window().maximize();
-        driver.manage().window().fullscreen();
+        //driver.manage().window().maximize();
+        //driver.manage().window().fullscreen();
 
         return driver;
     }

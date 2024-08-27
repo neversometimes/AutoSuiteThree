@@ -32,7 +32,7 @@ public class BasePage {
     public String getToastTxt() {
         waitForWebElementToAppear(toastAppears);
         String s = toastAppears.getText();
-        waitForWebElementToDisappear(toastVanishes);  // does this even work?
+        waitForWebElementToDisappear(toastAppears);  // does this even work?
         return s;
     }
 

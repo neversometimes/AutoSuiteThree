@@ -9,7 +9,7 @@ import static org.testng.Assert.*;
 public class CartTest extends BaseTests {
 
     @Test
-    public void EmptyCart () {
+    public void EmptyCart () throws Exception {
         CartPage cartPage = new CartPage(driver);
         doLogIn();
 

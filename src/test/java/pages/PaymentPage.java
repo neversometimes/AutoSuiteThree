@@ -1,15 +1,23 @@
 package pages;
 
 import base.BasePage;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
+import static org.testng.Assert.assertEquals;
+
 public class PaymentPage extends BasePage {
+
+    WebDriver driver;
 
     public PaymentPage (WebDriver driver) {
         super(driver);
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
@@ -65,11 +73,18 @@ public class PaymentPage extends BasePage {
     @FindBy(css="tr td:nth-of-type(6) button")
     WebElement orderDeleteBtn;
 
+
     @FindBy(css=".btn.btn-primary.col-md-2.offset-md-4")
     WebElement orderGoBackToShopBtn;
 
     @FindBy(css="div[class='row'] button:last-of-type")
     WebElement orderGoBackToCartBtn;
+
+    @FindBy(css="tbody tr")
+    List<WebElement> orderRows;
+
+    @FindBy(css="button[type='submit']")
+    WebElement applyCouponBtn;
 
     // ******** Defined Page Actions ***********
 
@@ -82,6 +97,15 @@ public class PaymentPage extends BasePage {
     public void setCountryNameInput() {
         countryNameInput.sendKeys("Canada");
         countryNameDropdown.click();
+    }
+    public void setBogusCountryNameInput() {
+        waitForWebElementToDisappear(cartToastTxt);
+        countryNameInput.sendKeys("Arizona");
+    }
+    public void clickApplyCouponBtn() {
+        waitForWebElementToAppear(applyCouponBtn);
+        waitForElementToBeClickable(applyCouponBtn);
+        applyCouponBtn.click();
     }
     public void clickPlaceOrderBtn() {
         waitForWebElementToAppear(placeOrderBtn);
@@ -96,17 +120,10 @@ public class PaymentPage extends BasePage {
     public void clickOrdersHistoryPageLink() {
         ordersHistoryPageLink.click();
     }
-    public WebElement clickDownloadOrderCSVBtn() {
-        downloadOrderCSVBtn.click();
-        return downloadOrderCSVBtn;
-    }
-    public void clickDownloadOrderXLBtn() {
-        downloadOrderXLBtn.click();
-    }
     public String getPaymentToastTxt() {
         waitForWebElementToAppear(cartToastTxt);
         String s = cartToastTxt.getText();
-        waitForWebElementToDisappear(toastVanishes);
+        waitForWebElementToDisappear(toastVanishes);  // does this even work?
         return s;
     }
     public String getOrderNameTxt() {
@@ -124,6 +141,12 @@ public class PaymentPage extends BasePage {
     public void clickOrderDeleteBtn() {
         orderDeleteBtn.click();
     }
+
+    public void clickOrderDeleteBtn2(String trNum) {
+        By orderDeleteBtn = By.xpath("//tbody/tr[" + trNum + "]/td[6]/button[1]");
+        WebElement we = driver.findElement(orderDeleteBtn);
+        we.click();
+    }
     public void clickBackToShopBtn() {
         orderGoBackToShopBtn.click();
         waitForWebElementToDisappear(orderGoBackToShopBtn);
@@ -133,5 +156,23 @@ public class PaymentPage extends BasePage {
         waitForWebElementToDisappear(orderGoBackToCartBtn);
     }
 
+    public List<WebElement> getOrderTableRows() throws Exception{
+        //Thread.sleep(500);
+        return orderRows;
+    }
+    public long getOrderCount() throws Exception{
+        Thread.sleep(500);
+        return getOrderTableRows().stream().count();
+    }
 
+    public void deleteOrders(Integer numOrders) throws Exception{
+        for (Integer i = numOrders; i > 0; i--) {
+            clickOrderDeleteBtn2(i.toString());
+            waitForWebElementToAppear(cartToastTxt);
+            waitForWebElementToDisappear(toastVanishes);
+            //long x = getOrderCount(); //included for useful wait?
+        }
+    }
+// tr is count of rows
+//tbody/tr[2]/td[6]/button[1]
 }

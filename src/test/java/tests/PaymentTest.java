@@ -11,6 +11,7 @@ import java.util.Date;
 import static org.testng.Assert.*;
 
 public class PaymentTest extends BaseTests {
+
     //  ** Payment Page Order Pre-requisite: **
     //   -- logs in, adds one Shoe to cart,
     //   -- clicks BuyNow btn, navigates to Payment Page
@@ -43,6 +44,7 @@ public class PaymentTest extends BaseTests {
         // click Buy Now
         crtPage.clickBuyNowBtn();
     }
+
     // ** Place Order Pre-requisite: **
     // -- does buyNowPrep()
     // -- verifies order details to be purchased
@@ -114,8 +116,8 @@ public class PaymentTest extends BaseTests {
         // TODO : move this into BaseTests.
         // test clean up : delete the item(s) purchased in the OrderList
         hdrPage.clickOrdersBtn();
-        System.out.println("# of orders: " + payPage.getOrderCount());
         payPage.deleteOrders((int)payPage.getOrderCount());
+
         hdrPage.clickSignOutBtn();
     }
 
@@ -139,11 +141,10 @@ public class PaymentTest extends BaseTests {
         // verify No Products page text
         assertEquals(crtPage.getNoProductTxt(), "No Products in Your Cart !");
 
-        // TODO : move into BaseTests.
         // test clean up : delete the item(s) purchased in the OrderList
         hdrPage.clickOrdersBtn();
-        System.out.println("# of orders: " + payPage.getOrderCount());
         payPage.deleteOrders((int)payPage.getOrderCount());
+
         hdrPage.clickSignOutBtn();
     }
 
@@ -175,18 +176,16 @@ public class PaymentTest extends BaseTests {
         sdf.applyPattern("E MMM dd");
 
         // TODO : current date needs to be current UTC date, not local date
-        // TODO : uncomment assert below that verifies date
+        // TODO : uncomment date assert below once fixed
         // verify order details
         assertEquals(payPage.getOrderNameTxt(), "ADIDAS ORIGINAL");
         assertEquals(payPage.getOrderPriceTxt(), "$ 31500");
        // assertEquals(paymentPage.getOrderDateTxt(), sdf.format(date));
 
-
-        // TODO : move to BaseTests
         // test clean up : delete the item(s) purchased in the OrderList
         hdrPage.clickOrdersBtn();
-        System.out.println("# of orders: " + payPage.getOrderCount());
         payPage.deleteOrders((int)payPage.getOrderCount());
+
         hdrPage.clickSignOutBtn();
 
     }
@@ -232,8 +231,7 @@ public class PaymentTest extends BaseTests {
         // verify at home shop page
         assertEquals(getPageURL(), homePageURL);
 
-
-        // TODO : move this to BaseTests
+        // TODO : move this to BaseTests?
         hdrPage.clickSignOutBtn();
     }
     @Test
@@ -290,9 +288,7 @@ public class PaymentTest extends BaseTests {
 
         assertEquals(payPage.getOrderCount(), 2);
 
-        // TODO : move to BaseTests
         //  ****  test clean up - delete the count of items found present in the order
-        System.out.println("# of orders: " + payPage.getOrderCount());
         payPage.deleteOrders((int)payPage.getOrderCount());
 
     }
@@ -351,9 +347,8 @@ public class PaymentTest extends BaseTests {
         payPage.clickOrdersHistoryPageLink();
         // verify count in order is 1
         assertEquals(payPage.getOrderCount(), 1);
-// TODO : move the clean up code to BastTests
-        // *** test clean up - delete the count of items present in the order
-        System.out.println("# of orders: " + payPage.getOrderCount());
+
+        // **** test clean up - delete the count of items found present in the order
         payPage.deleteOrders((int)payPage.getOrderCount());
     }
 

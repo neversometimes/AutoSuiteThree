@@ -29,20 +29,21 @@ public class BasePage {
 
     // *******   Base Page Actions   *******
 
-    public String getToastTxt() {
+    public String getToastTxt() throws Exception {
         waitForWebElementToAppear(toastAppears);
+        Thread.sleep(500);
         String s = toastAppears.getText();
-        waitForWebElementToDisappear(toastAppears);  // does this even work?
+        waitForWebElementToDisappear(toastVanishes);  // does this even work?
         return s;
     }
 
     public void waitForWebElementToAppear(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     public void waitForWebElementToDisappear(WebElement element) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(3));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.invisibilityOf(element));
     }
 

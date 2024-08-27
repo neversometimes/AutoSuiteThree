@@ -23,7 +23,7 @@ public class HeaderPage extends BasePage {
     @FindBy(css=".btn.btn-custom[routerlink='/dashboard/cart']")
     WebElement cartBtn;
 
-    @FindBy(css="li:nth-child(5) button:nth-child(1)")
+    @FindBy(css="li:nth-child(5) button")
     WebElement signOutBtn;
 
     @FindBy(css=".mt-4.ng-star-inserted")
@@ -56,6 +56,7 @@ public class HeaderPage extends BasePage {
         return ordersPageTxt.getText();
     }
     public void clickCartBtn() {
+        waitForElementToBeClickable(cartBtn);
         cartBtn.click();
     }
     public String getCartToastTxt() {
@@ -68,7 +69,8 @@ public class HeaderPage extends BasePage {
     public String getCartPageTxt() {
         return emptyCartPageTxt.getText();
     }
-    public void clickSignOutBtn() {
+    public void clickSignOutBtn() throws Exception {
+        Thread.sleep(500);
         signOutBtn.click();
     }
 

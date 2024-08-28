@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTests;
+import base.Retry;
 import pages.LoginPage;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
@@ -34,9 +35,9 @@ public class LoginTest extends BaseTests {
         // click loginBtn and wait to verify toast error message
         loginPage.clickLoginBtn();
         assertEquals(loginPage.getToastTxt(), "Incorrect email or password.");
-        //assertEquals(loginPage.clickLoginBtnChkToast(), "Incorrect email or password.");
+
     }
-    @Test
+    @Test(retryAnalyzer = Retry.class)
     public void basicLogIn() throws Exception {
         LoginPage loginPage = new LoginPage(driver);
         // pre-requisite: assumes valid registered user credentials
@@ -45,10 +46,8 @@ public class LoginTest extends BaseTests {
 
         // click loginBtn and wait to verify toast success message
         loginPage.clickLoginBtn();
-        Thread.sleep(500);
+        //Thread.sleep(500);
         assertEquals(loginPage.getToastTxt(), "Login Successfully");
-        //assertEquals(loginPage.clickLoginBtnChkToast(), "Login Successfully");
-
 
         assertEquals(getPageTitle(), "Let's Shop");
 

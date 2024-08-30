@@ -1,15 +1,18 @@
 package tests;
 
 import base.BaseTests;
+import base.Retry;
 import pages.CartPage;
 import org.testng.annotations.Test;
 import pages.ProductViewPage;
 import static org.testng.Assert.*;
 
+@Test (groups={"functional"})
 public class CartTest extends BaseTests {
 
-    @Test
+    @Test(groups={"bvt"})
     public void EmptyCart () throws Exception {
+
         CartPage cartPage = new CartPage(driver);
         doLogIn();
 
@@ -25,7 +28,7 @@ public class CartTest extends BaseTests {
         // verify back at site home shopping page again
         assertEquals(getPageURL(), homePageURL);
     }
-    @Test
+    @Test(groups = {"bvt"})
     public void ATCFromHomePage() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
@@ -42,7 +45,7 @@ public class CartTest extends BaseTests {
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "1");
     }
-    @Test
+    @Test(groups={"bvt"})
     public void ATCFromProdPage() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
@@ -98,9 +101,8 @@ public class CartTest extends BaseTests {
 
         // verify cart button shows 1 item
         assertEquals(cartPage.getCartCountTxt(), "2");
-
     }
-    @Test
+    @Test(groups={"bvt"})
     public void addShoesItemToCart() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
@@ -123,9 +125,8 @@ public class CartTest extends BaseTests {
 
         // verify item added to Cart is Shoes
         assertEquals(cartPage.getCartItemTxt(), "ADIDAS ORIGINAL");
-
     }
-    @Test
+    @Test(groups={"bvt"}, retryAnalyzer = Retry.class)
     public void deleteCartItem() throws Exception {
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
@@ -149,14 +150,13 @@ public class CartTest extends BaseTests {
         cartPage.clickDeleteCartItemBtn();
 
         // verify page text confirmation of deletion
-       assertEquals(cartPage.getNoProductTxt(), "No Products in Your Cart !");
-
-
+        assertEquals(cartPage.getNoProductTxt(), "No Products in Your Cart !");
     }
-    @Test
+    @Test(groups={"bvt"})
     public void cartBuyNowAndCheckout() throws Exception {
         // Buy Now and Checkout both go to the order page
         // this test verifies BOTH of those navigation paths
+
         CartPage cartPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
         doLogIn();
@@ -185,7 +185,6 @@ public class CartTest extends BaseTests {
         cartPage.clickCheckOutBtn();
         // verify on order page
         assertEquals(cartPage.getCreditCardTxt(), "Credit Card");
-
     }
 
 }

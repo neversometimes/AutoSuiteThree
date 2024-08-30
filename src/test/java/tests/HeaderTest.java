@@ -5,12 +5,13 @@ import pages.HeaderPage;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
+@Test(groups = {"functional"})
 public class HeaderTest extends BaseTests {
 
     // This test class navigates E2E exclusive through the
     // header links: Home/Orders/Cart/SignOut
 
-    @Test
+    @Test(groups={"bvt"})
     public void navigateHeaderLinks() throws Exception {
         HeaderPage headerPage = new HeaderPage(driver);
         doLogIn();

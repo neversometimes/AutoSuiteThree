@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd">
+<!-- This config targets ordered basic verification tests run on Edge -->
+<suite name="bvt" >
+    <listeners>
+        <listener class-name="base.TestListener" />
+    </listeners>
+    <parameter name="browser" value="edge" />
+    <test name="bvt" preserve-order="true">
+        <groups>
+            <define name = "bvt">
+                <include name="bvt" />
+            </define>
+            <define name="all">
+                <include name="funcTest" />
+                <include name="bvt" />
+            </define>
+
+            <run>
+                <include name="bvt" />
+            </run>
+        </groups>
+
+        <classes>
+            <class name="tests.RegistrationTest" />
+            <class name="tests.LoginTest" />
+            <class name="tests.NewPwdTest" />
+            <class name="tests.HeaderTest" />
+            <class name="tests.HomeFilterTest" />
+            <class name="tests.CartTest" />
+            <class name="tests.ProductViewTest" />
+            <class name="tests.PaymentTest" />
+            <class name="tests.OrderSummaryTest" />
+        </classes>
+    </test>
+</suite>

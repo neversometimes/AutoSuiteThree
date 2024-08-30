@@ -5,6 +5,7 @@ import pages.NewPwdPage;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
+@Test(groups={"functional"})
 public class NewPwdTest extends BaseTests {
 
     @Test
@@ -20,7 +21,7 @@ public class NewPwdTest extends BaseTests {
         // verify *Email error text shows
         assertEquals(newPwdPage.getEmailReqText(), "*Email is required");
     }
-    @Test
+    @Test(groups={"bvt"})
     public void newPwdLoginLink() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
 
@@ -32,7 +33,7 @@ public class NewPwdTest extends BaseTests {
         // verify navigate to login page
         assertEquals(getPageURL(), appLoginPageURL);
     }
-    @Test
+    @Test(groups={"bvt"})
     public void newPwdRegisterLink() {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
         // click forgot pwd link
@@ -45,7 +46,7 @@ public class NewPwdTest extends BaseTests {
         assertEquals(getPageURL(), registerPageURL);
     }
 
-    @Test
+    @Test(groups={"bvt"})
     public void newPwdBadCreds() throws Exception {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
         // click forgot pwd link
@@ -60,9 +61,8 @@ public class NewPwdTest extends BaseTests {
 
         // verify error text
         assertEquals(newPwdPage.getToastTxt(), "User Not found.");
-
     }
-    @Test
+    @Test(groups={"bvt"})
     public void createNewPwd() throws Exception {
         NewPwdPage newPwdPage = new NewPwdPage(driver);
 
@@ -94,7 +94,6 @@ public class NewPwdTest extends BaseTests {
         newPwdPage.enterConfirmText("passWORD123");
 
         newPwdPage.clickSaveNewPwd();
-
     }
 
 }

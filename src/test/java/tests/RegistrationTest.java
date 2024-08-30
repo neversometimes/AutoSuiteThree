@@ -5,29 +5,60 @@ import pages.RegistrationPage;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
+@Test(groups={"functional"})
 public class RegistrationTest extends BaseTests{
 
-    @Test
+    @Test(groups={"bvt"})
     public void registrationFail() {
-        // negative test : NO required info was provided to register
+        // NEGATIVE TEST : NO required info was provided to register
         RegistrationPage regPage = new RegistrationPage(driver);
 
         regPage.clickRegisterHereBtn();
         regPage.clickRegisterBtn();
         assertEquals(regPage.getRegisterErrorText(), "*Please check above checkbox");
     }
-    @Test
-    public void missingRequiredInfo() {
-        //TODO: add negative test : partial required info provided
+    @Test(groups={"bvt"})
+    public void missingRequiredInfo() throws Exception {
+        // NEGATIVE TEST : partial required info provided (no last name provided)
+        RegistrationPage regPage = new RegistrationPage(driver);
+
+        regPage.clickRegisterHereBtn();
+
+        regPage.enterFirstName("Foo");
+        //  no last name provided
+        regPage.enterEmail("foobar@snafu.gov");
+        regPage.enterPhone("4155551112");
+        regPage.enterPassword("WordPass99");
+        regPage.enterConfirmPW("WordPass99");
+        regPage.selectAgeCheckBox();
+        regPage.clickRegisterBtn();
+        assertEquals(regPage.getToastTxt(), "Last Name is required!");
+        // Product BUG: last name required, but no notification via UI error text
+
     }
-    @Test
-    public void userAlreadyRegistered() {
-        // TODO: add negative test : no go - already registered!
+    @Test(groups={"bvt"})
+    public void userAlreadyRegistered() throws Exception {
+        // NEGATIVE TEST : no go - Email user already registered!
         // username@ms.com
         //
+        RegistrationPage regPage = new RegistrationPage(driver);
+
+        regPage.clickRegisterHereBtn();
+
+        regPage.enterFirstName("User");
+        regPage.enterLastName("Name");     //BUG: last name required, but doesn't show required via UI
+        regPage.enterEmail("username@ms.com");
+        regPage.enterPhone("4155551112");
+        regPage.enterPassword("WordPass99");
+        regPage.enterConfirmPW("WordPass99");
+        regPage.selectAgeCheckBox();
+        regPage.clickRegisterBtn();
+        // BUG: typo in string: "exisits" should be "exists"
+        assertEquals(regPage.getToastTxt(), "User already exisits with this Email Id!");
+
     }
-    @Test
-    public void basicRegistrationCreation() {
+    @Test(groups={"bvt"})
+    public void basicRegistrationCreation() throws Exception {
         RegistrationPage regPage = new RegistrationPage(driver);
 
         // using only minimum required data to register
@@ -46,7 +77,8 @@ public class RegistrationTest extends BaseTests{
         regPage.enterPassword("WordPass99");
         regPage.enterConfirmPW("WordPass99");
         regPage.selectAgeCheckBox();
-        regPage.clickRegisterBtnToast();
+        regPage.clickRegisterBtn();
+        assertEquals(regPage.getToastTxt(), "Registered Successfully" );
 
         // verify Account Created Successfully
         assertEquals(regPage.getAccountCreatedLoginBtn(), "Login");
@@ -54,11 +86,7 @@ public class RegistrationTest extends BaseTests{
         // if successful, Account Created Successfully Login page appears
         regPage.clickAccountCreatedLoginBtn();
 
-        // wait for page with Login button to appear
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".btn.btn-block.login-btn")));
-
-        // "Login" button routes to generic Log-in Page
+        // "Login" button navigates back to generic Log-in Page
         assertEquals(regPage.getLoginBtnValue(), "Login");
-
     }
 }

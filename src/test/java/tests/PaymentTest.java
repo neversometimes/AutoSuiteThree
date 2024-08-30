@@ -1,6 +1,7 @@
 package tests;
 
 import base.BaseTests;
+import base.Retry;
 import pages.PaymentPage;
 import pages.CartPage;
 import pages.HeaderPage;
@@ -9,6 +10,7 @@ import org.testng.annotations.Test;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import static org.testng.Assert.*;
+
 
 public class PaymentTest extends BaseTests {
 
@@ -89,10 +91,9 @@ public class PaymentTest extends BaseTests {
         // click "PLACE ORDER" btn - verify error text - no order is placed
         paymentPage.clickPlaceOrderBtn();
         assertEquals(paymentPage.getToastTxt(), "Please Enter Full Shipping Information");
-
     }
 
-    @Test
+    @Test(groups={"bvt"})
     public void paymentPlaceOrder() throws Exception {
         // happy path single order
         placeOrderPrep();
@@ -113,7 +114,6 @@ public class PaymentTest extends BaseTests {
         // verify myOrders Page
         assertEquals(getPageURL(), myOrdersPageURL);
 
-        // TODO : move this into BaseTests.
         // test clean up : delete the item(s) purchased in the OrderList
         hdrPage.clickOrdersBtn();
         payPage.deleteOrders((int)payPage.getOrderCount());
@@ -121,7 +121,7 @@ public class PaymentTest extends BaseTests {
         hdrPage.clickSignOutBtn();
     }
 
-    @Test
+    @Test(groups={"bvt"})
     public void orderClearsCart() throws Exception {
         // happy path scenario + verifies Cart is clear after product ordered
         placeOrderPrep();
@@ -148,7 +148,7 @@ public class PaymentTest extends BaseTests {
         hdrPage.clickSignOutBtn();
     }
 
-    @Test
+    @Test(groups={"bvt"})
     public void ordersPageDetails() throws Exception {
         // happy path scenario verifying product details
         placeOrderPrep();
@@ -187,9 +187,8 @@ public class PaymentTest extends BaseTests {
         payPage.deleteOrders((int)payPage.getOrderCount());
 
         hdrPage.clickSignOutBtn();
-
     }
-    @Test
+    @Test(groups={"bvt"}, retryAnalyzer = Retry.class)
     public void ordersPageDelete() throws Exception {
         // verifies the ability to delete previously placed order
         // also verifies back to shopping and back to cart buttons
@@ -234,10 +233,9 @@ public class PaymentTest extends BaseTests {
         // TODO : move this to BaseTests?
         hdrPage.clickSignOutBtn();
     }
-    @Test
+    @Test(groups={"bvt"})
     public void twoItemsOrder() throws Exception {
         // verifies two cart items together are included together in one order
-
         PaymentPage payPage = new PaymentPage(driver);
         CartPage crtPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);
@@ -290,13 +288,11 @@ public class PaymentTest extends BaseTests {
 
         //  ****  test clean up - delete the count of items found present in the order
         payPage.deleteOrders((int)payPage.getOrderCount());
-
     }
-    @Test
+    @Test(groups={"bvt"})
     public void twoItemsOneOrder() throws Exception {
         // verify adding two items into the cart
         // verify ability to order only one item (second added) from the cart
-
         PaymentPage payPage = new PaymentPage(driver);
         CartPage crtPage = new CartPage(driver);
         ProductViewPage pvPage = new ProductViewPage(driver);

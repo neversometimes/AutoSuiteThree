@@ -5,11 +5,13 @@ import org.testng.annotations.Test;
 import pages.ProductViewPage;
 import static org.testng.Assert.*;
 
+@Test(groups={"functional"})
 public class ProductViewTest extends BaseTests{
-    @Test
+
+    @Test(groups={"bvt"})
     public void productPage() throws Exception{
-        ProductViewPage pvPage = new ProductViewPage(driver);
         // Verifies entry point and various product details data
+        ProductViewPage pvPage = new ProductViewPage(driver);
 
         // login to site
         doLogIn();
@@ -22,7 +24,7 @@ public class ProductViewTest extends BaseTests{
         //grab product description & verify
         assertEquals(pvPage.getProdDetails(), "Adidas shoes for Men");
     }
-    @Test
+    @Test(groups={"bvt"})
     public void continueShopping() throws Exception{
         ProductViewPage pvPage = new ProductViewPage(driver);
         // login to site
@@ -35,7 +37,6 @@ public class ProductViewTest extends BaseTests{
 
         // verify page navigates to main app shopping page
         assertEquals(getPageURL(), homePageURL);
-
     }
 
 }

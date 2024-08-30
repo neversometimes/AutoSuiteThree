@@ -1,13 +1,15 @@
 package tests;
 
 import base.BaseTests;
+import base.Retry;
 import pages.*;
 import org.testng.annotations.Test;
 import static org.testng.Assert.*;
 
+@Test(groups={"functional"})
 public class OrderSummaryTest extends BaseTests {
 
-    @Test
+    @Test(groups={"bvt"}, retryAnalyzer = Retry.class)
     public void ordersPageSummary() throws Exception {
         HeaderPage hdrPage = new HeaderPage(driver);
         CartPage crtPage = new CartPage(driver);
@@ -51,7 +53,7 @@ public class OrderSummaryTest extends BaseTests {
 
         // click "PLACE ORDER" btn
         paymentPage.clickPlaceOrderBtn();
-        assertEquals(paymentPage.getToastTxt(), "Order Placed Successfully");
+        assertEquals(orderSummaryPage.getToastTxt(), "Order Placed Successfully");
 
         // verify order confirmation page
         assertEquals(paymentPage.getOrderConfirmationBannerTxt(), "THANKYOU FOR THE ORDER.");

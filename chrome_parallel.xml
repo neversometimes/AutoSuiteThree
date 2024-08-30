@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd">
+<!-- This config targets ordered functional tests in parallel (3 threads) run on Chrome -->
+
+<suite name="Chrome_Parallel" >
+    <listeners>
+        <listener class-name="base.TestListener" />
+    </listeners>
+    <parameter name="browser" value="chrome" />
+    <test name="ChromeTestParallel" parallel="classes" thread-count="3" preserve-order="true">
+         <classes>
+            <class name="tests.RegistrationTest" />
+            <class name="tests.LoginTest" />
+            <class name="tests.NewPwdTest" />
+            <class name="tests.HeaderTest" />
+            <class name="tests.HomeFilterTest" />
+            <class name="tests.CartTest" />
+            <class name="tests.ProductViewTest" />
+            <class name="tests.PaymentTest" />
+            <class name="tests.OrderSummaryTest" />
+        </classes>
+    </test>  <!-- Test -->
+</suite>

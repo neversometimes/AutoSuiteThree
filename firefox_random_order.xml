@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.1.dtd">
+<!-- This config targets random-order functional tests run on FireFox -->
+
+<suite name="Firefox_Random" >
+    <listeners>
+        <listener class-name="base.TestListener" />
+    </listeners>
+    <parameter name="browser" value="firefox" />
+    <test name="FirefoxTestRandom" preserve-order="false">
+        <classes>
+            <class name="tests.RegistrationTest" />
+            <class name="tests.LoginTest" />
+            <class name="tests.NewPwdTest" />
+            <class name="tests.HeaderTest" />
+            <class name="tests.HomeFilterTest" />
+            <class name="tests.CartTest" />
+            <class name="tests.ProductViewTest" />
+            <class name="tests.PaymentTest" />
+            <class name="tests.OrderSummaryTest" />
+        </classes>
+    </test>  <!-- Test -->
+</suite>

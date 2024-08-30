@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 import pages.HomePage;
 import static org.testng.Assert.*;
 
+@Test(groups={"functional"})
 public class HomeFilterTest extends BaseTests {
 
     @Test
@@ -21,7 +22,7 @@ public class HomeFilterTest extends BaseTests {
         assertTrue(homePage.getResultsCount().contains("0"));
     }
 
-    @Test
+    @Test(groups={"bvt"})
     public void textSearch() throws Exception{
         HomePage homePage = new HomePage(driver);
         // login to site
@@ -35,7 +36,7 @@ public class HomeFilterTest extends BaseTests {
         //System.out.println(homePage.getResultsCount());
         assertTrue(homePage.getResultsCount().contains("1"), "count=1");
     }
-    @Test
+    @Test(groups={"bvt"})
     public void priceFilter() throws Exception{
         HomePage homePage = new HomePage(driver);
         // login to site
@@ -48,9 +49,8 @@ public class HomeFilterTest extends BaseTests {
         assertTrue(homePage.getProductByName("ZARA COAT 3").getText().contains("ZARA"));
         assertTrue(homePage.getProductByName("ADIDAS ORIGINAL").getText().contains("ADIDAS"));
         assertTrue(homePage.getResultsCount().contains("2"), "count=2");
-
     }
-    @Test
+    @Test(groups={"bvt"})
     public void categoriesFilter() throws Exception{
         HomePage homePage = new HomePage(driver);
         // login to site
@@ -72,12 +72,10 @@ public class HomeFilterTest extends BaseTests {
         homePage.selectHouseholdChkbox();
         assertTrue(homePage.getProductByName("ADIDAS ORIGINAL").getText().contains("ADIDAS"));
         assertTrue(homePage.getResultsCount().contains("1"));
-
     }
 
-    @Test
+    @Test(groups={"bvt"})
     public void genderFilter() throws Exception {
-
         HomePage homePage = new HomePage(driver);
         // login to site
         doLogIn();

@@ -1,14 +1,20 @@
 package base;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import pages.LoginPage;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-//import org.openqa.selenium.safari.SafariDriver;  //tests usually aren't reliable on Safari
+import org.openqa.selenium.safari.SafariDriver;  //significant problems with safari driver
 
 import org.testng.annotations.*;
-import pages.LoginPage;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Random;
 
@@ -18,14 +24,21 @@ public class BaseTests {
     public String homePageURL = "https://rahulshettyacademy.com/client/dashboard/dash";
     public String registerPageURL = "https://rahulshettyacademy.com/client/auth/register";
     public String myOrdersPageURL = "https://rahulshettyacademy.com/client/dashboard/myorders";
-    protected WebDriver driver;
+    public WebDriver driver;
 
-    @BeforeMethod
-    public WebDriver setup() {
+    @BeforeMethod (alwaysRun = true)
+    @Parameters({"browser"})
+    public WebDriver setup(String browser) throws Exception {
 
-        // TODO: add cross-browser capability here
-
-        driver = new ChromeDriver();
+        if (browser.equalsIgnoreCase("edge")) {
+            driver = new EdgeDriver();
+        } else if (browser.equalsIgnoreCase("firefox")) {
+            driver = new FirefoxDriver();
+        } else if (browser.equalsIgnoreCase("chrome")) {
+            driver = new ChromeDriver();
+        } else {
+            throw new Exception("Incorrect Browser");
+        }
 
         // global timeout implicit wait for all tests
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
@@ -35,12 +48,11 @@ public class BaseTests {
 
         // global maximize window for all tests
         //driver.manage().window().maximize();
-        //driver.manage().window().fullscreen();
 
         return driver;
     }
 
-    @AfterMethod
+    @AfterMethod (alwaysRun = true)
     public void teardown() {
         driver.quit();  // .close?
 
@@ -55,7 +67,7 @@ public class BaseTests {
 
         LoginPage loginPage = new LoginPage(driver);
 
-        // enter non-registered info and try to log in
+        // enter registered info and log in
         loginPage.enterEmail("username@ms.com");
         loginPage.enterPwd("passWORD123");
         loginPage.clickLoginBtnWait();
@@ -81,4 +93,13 @@ public class BaseTests {
     public String getPageTitle() {
         return driver.getTitle();
     }
+
+    public String getScreenShot(String testCaseName, WebDriver driver) throws IOException {
+        TakesScreenshot ts = (TakesScreenshot) driver;
+        File source = ts.getScreenshotAs(OutputType.FILE);
+        File file = new File (System.getProperty("user.dir") + "/reports/" + testCaseName + ".png");
+        FileUtils.copyFile(source, file);  // put the SS file in the /reports directory
+        return testCaseName + ".png";   // return filname.ext only - file in same path as report
+    }
+
 }

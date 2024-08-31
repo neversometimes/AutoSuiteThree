@@ -14,39 +14,42 @@ public class TestListener extends BaseTests implements ITestListener {
 
     ExtentReports extent = EventReporterNG.getReportObject();
     ExtentTest test;
+    ThreadLocal<ExtentTest>  extentTest = new ThreadLocal<>();   //
 
     @Override
     public void onTestStart(ITestResult result) {
         ITestListener.super.onTestStart(result);
         test = extent.createTest(result.getMethod().getMethodName());  // creates test in report using method name
+        extentTest.set(test);  // sets unique thread ID with this test into map:  id->test
     }
 
     @Override
     public void onTestSuccess(ITestResult result) {
         ITestListener.super.onTestSuccess(result);
-        test.log(Status.PASS, "Test :) Passed");
+        extentTest.get().log(Status.PASS, "Test :) Passed"); // gets unique thread ID, reports pass
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         ITestListener.super.onTestFailure(result);
-        test.fail(result.getThrowable());  // report test FAIL
+        extentTest.get().fail(result.getThrowable());  // gets unique thread ID, reports test FAIL w/call statck
 
-        // get WebDriver "driver" object field from the specific test case result
+
+        // get WebDriver "driver" object field from the specific test case via ITestResult result
         try {
             driver = (WebDriver) result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        // getScreenshot and attach that .png file to the report
+        // getScreenshot and attach that .png file to the test report
         String filePath = null;
         try {
             filePath = getScreenShot(result.getMethod().getMethodName(), driver);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        test.addScreenCaptureFromPath(filePath, result.getMethod().getMethodName());
+        extentTest.get().addScreenCaptureFromPath(filePath, result.getMethod().getMethodName()); // uses unique thread ID
     }
 
     @Override

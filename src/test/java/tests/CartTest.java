@@ -11,7 +11,7 @@ import static org.testng.Assert.*;
 public class CartTest extends BaseTests {
 
     @Test(groups={"bvt"})
-    public void EmptyCart () throws Exception {
+    public void emptyCart () throws Exception {
 
         CartPage cartPage = new CartPage(driver);
         doLogIn();

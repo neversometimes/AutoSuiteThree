@@ -15,7 +15,9 @@ import org.testng.annotations.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Date;
 import java.util.Random;
 
 public class BaseTests {
@@ -25,6 +27,14 @@ public class BaseTests {
     public String registerPageURL = "https://rahulshettyacademy.com/client/auth/register";
     public String myOrdersPageURL = "https://rahulshettyacademy.com/client/dashboard/myorders";
     public WebDriver driver;
+    public static String reportDate; // part of unique per run path for generated Extent reports
+
+    public static String setReportDate() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        sdf.applyPattern("MMMddHmm");  // e.g "Aug311513" based on Aug 31 15:13
+        return sdf.format(date);
+    }
 
     @BeforeMethod (alwaysRun = true)
     @Parameters({"browser"})
@@ -97,7 +107,8 @@ public class BaseTests {
     public String getScreenShot(String testCaseName, WebDriver driver) throws IOException {
         TakesScreenshot ts = (TakesScreenshot) driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
-        File file = new File (System.getProperty("user.dir") + "/reports/" + testCaseName + ".png");
+        File file = new File (System.getProperty("user.dir") +
+                                "/reports/" + reportDate + "/" + testCaseName + ".png");
         FileUtils.copyFile(source, file);  // put the SS file in the /reports directory
         return testCaseName + ".png";   // return filname.ext only - file in same path as report
     }

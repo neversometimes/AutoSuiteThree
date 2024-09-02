@@ -56,7 +56,7 @@
     </dependencies>
     <profiles>
         <profile>
-            <id>Regression</id>
+            <id>BasicVerificationTest</id>
             <build>
                 <pluginManagement>
                     <plugins>
@@ -67,7 +67,7 @@
                             <configuration>
                                 <suiteXmlFiles>
                                     <suiteXmlFile>
-                                        testng.xml
+                                        BVT.xml
                                     </suiteXmlFile>
                                 </suiteXmlFiles>
                             </configuration>
@@ -77,7 +77,7 @@
             </build>
         </profile>
         <profile>
-            <id>Acceptance</id>
+            <id>CrossBrowser</id>
             <build>
                 <pluginManagement>
                     <plugins>
@@ -88,7 +88,49 @@
                             <configuration>
                                 <suiteXmlFiles>
                                     <suiteXmlFile>
-                                        testng.xml
+                                        xBrowser.xml
+                                    </suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>Firefox_Random</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.3.1</version>
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>
+                                        firefox_random_order.xml
+                                    </suiteXmlFile>
+                                </suiteXmlFiles>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+        <profile>
+            <id>Chrome_Parallel</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-surefire-plugin</artifactId>
+                            <version>3.3.1</version>
+                            <configuration>
+                                <suiteXmlFiles>
+                                    <suiteXmlFile>
+                                        chrome_parallel.xml
                                     </suiteXmlFile>
                                 </suiteXmlFiles>
                             </configuration>
@@ -98,23 +140,5 @@
             </build>
         </profile>
     </profiles>
-    <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>3.3.1</version>
-                    <configuration>
-                        <suiteXmlFiles>
-                            <suiteXmlFile>
-                                testng.xml
-                            </suiteXmlFile>
-                        </suiteXmlFiles>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
-    </build>
 
 </project>

@@ -1,6 +1,10 @@
 package base;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.poi.xssf.usermodel.XSSFCell;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import pages.LoginPage;
@@ -13,7 +17,9 @@ import org.openqa.selenium.safari.SafariDriver;  //significant problems with saf
 
 import org.testng.annotations.*;
 
+import org.apache.poi.ss.usermodel.DataFormatter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -111,6 +117,29 @@ public class BaseTests {
                                 "/reports/" + reportDate + "/" + testCaseName + ".png");
         FileUtils.copyFile(source, file);  // put the SS file in the /reports directory
         return testCaseName + ".png";   // return filname.ext only - file in same path as report
+    }
+
+    @DataProvider(name="loginTest")
+    public Object[][] getData() throws IOException {
+
+        DataFormatter formatter = new DataFormatter();
+        FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/xlData.xlsx");
+        XSSFWorkbook wb = new XSSFWorkbook(fis);
+        XSSFSheet sheet = wb.getSheetAt(0);
+        int rowCount = sheet.getPhysicalNumberOfRows();
+        XSSFRow row = sheet.getRow(0);
+        int colCount = row.getLastCellNum();
+
+        Object [][] data = new Object[rowCount-1][colCount];
+        for (int i=0; i<rowCount-1; i++){
+            row = sheet.getRow(i+1);  // gets entire row
+            for (int j=0; j<colCount; j++){
+                XSSFCell cell = row.getCell(j);
+                data[i][j] = formatter.formatCellValue(cell);  // formats data as String
+            }
+        }
+
+        return data;
     }
 
 }

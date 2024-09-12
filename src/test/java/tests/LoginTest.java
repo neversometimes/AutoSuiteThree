@@ -37,13 +37,13 @@ public class LoginTest extends BaseTests {
         loginPage.clickLoginBtn();
         assertEquals(loginPage.getToastTxt(), "Incorrect email or password.");
     }
-    @Test(groups={"bvt"}, retryAnalyzer = Retry.class)
-    public void basicLogIn() throws Exception {
+    @Test(groups={"bvt"}, retryAnalyzer = Retry.class, dataProvider="loginTest")
+    public void basicLogIn(String email, String password) throws Exception {
 
         LoginPage loginPage = new LoginPage(driver);
         // pre-requisite: assumes valid registered user credentials
-        loginPage.enterEmail("username@ms.com");
-        loginPage.enterPwd("passWORD123");
+        loginPage.enterEmail(email);
+        loginPage.enterPwd(password);
 
         // click loginBtn and wait to verify toast success message
         loginPage.clickLoginBtn();

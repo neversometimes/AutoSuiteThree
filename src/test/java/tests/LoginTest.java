@@ -4,6 +4,9 @@ import base.BaseTests;
 import base.Retry;
 import pages.LoginPage;
 import org.testng.annotations.Test;
+
+import java.util.HashMap;
+
 import static org.testng.Assert.*;
 
 @Test(groups = {"functional"})
@@ -37,13 +40,13 @@ public class LoginTest extends BaseTests {
         loginPage.clickLoginBtn();
         assertEquals(loginPage.getToastTxt(), "Incorrect email or password.");
     }
-    @Test(groups={"bvt"}, retryAnalyzer = Retry.class, dataProvider="loginTest")
-    public void basicLogIn(String email, String password) throws Exception {
+    @Test(groups={"bvt"}, retryAnalyzer = Retry.class, dataProvider="JSONData")
+    public void basicLogIn(HashMap<String, String> data) throws Exception {
 
         LoginPage loginPage = new LoginPage(driver);
         // pre-requisite: assumes valid registered user credentials
-        loginPage.enterEmail(email);
-        loginPage.enterPwd(password);
+        loginPage.enterEmail(data.get("email"));
+        loginPage.enterPwd(data.get("password"));
 
         // click loginBtn and wait to verify toast success message
         loginPage.clickLoginBtn();

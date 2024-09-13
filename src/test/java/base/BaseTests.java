@@ -1,5 +1,7 @@
 package base;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.commons.io.FileUtils;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
@@ -20,11 +22,15 @@ import org.testng.annotations.*;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
+import java.nio.charset.StandardCharsets;
 
 public class BaseTests {
     public String landingPageURL = "https://rahulshettyacademy.com/client";
@@ -62,7 +68,7 @@ public class BaseTests {
         // go to the webapp landing page
         goToLandingPage();
 
-        // global maximize window for all tests
+         // TODO: set window size for test run - don't maximize the window
         //driver.manage().window().maximize();
 
         return driver;
@@ -70,7 +76,7 @@ public class BaseTests {
 
     @AfterMethod (alwaysRun = true)
     public void teardown() {
-        driver.quit();  // .close?
+        driver.quit();
 
     }
 
@@ -119,9 +125,9 @@ public class BaseTests {
         return testCaseName + ".png";   // return filname.ext only - file in same path as report
     }
 
-    @DataProvider(name="loginTest")
+    @DataProvider(name="XlData")
     public Object[][] getData() throws IOException {
-
+        // this data provider derives its data from an XL spreadsheet
         DataFormatter formatter = new DataFormatter();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir") + "/xlData.xlsx");
         XSSFWorkbook wb = new XSSFWorkbook(fis);
@@ -139,6 +145,24 @@ public class BaseTests {
             }
         }
 
+        return data;
+    }
+    @DataProvider(name="JSONData")
+    public Object[][] getJSONData() throws IOException {
+        List<HashMap<String, String>> data = getJsonDataToMap(System.getProperty("user.dir")+"/loginData.json");
+        return new Object[][] {{data.get(0)}, {data.get(1)}, {data.get(2)}};  //JSON contains 3 maps
+    }
+
+    // utility to get JSON data into Map form
+    public  List<HashMap<String, String>> getJsonDataToMap(String filePath) throws IOException {
+        // read json file to string
+        String jsonContent = FileUtils.readFileToString(
+                new File(filePath), StandardCharsets.UTF_8);
+        // string to hashmap
+        ObjectMapper mapper = new ObjectMapper();
+        List<HashMap<String, String>> data = mapper.readValue(jsonContent, new TypeReference<List<HashMap<String, String>>>() {
+
+        });
         return data;
     }
 
